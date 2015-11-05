@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="light_grey">#BEBFC5</color>
+    <color name="light_grey2">#BEBFC5</color>
+    <color name="dark_grey">#333537</color>
+    <color name="dark_button">#333537</color>
+    <color name="red_button">#AE2222</color>
+    <color name="dark_grey_button">#8D9498</color>
+    <color name="result_text">#575955</color>
+</resources>

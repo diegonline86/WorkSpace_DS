@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">BBVA_SMS</string>
+    <string name="new_message_notification_placeholder_text_template">nuevo mensaje</string>
+    <string name="new_message_notification_title_template">Mensaje entrante</string>
+    <string name="action_share">Compartir</string>
+    <string name="action_reply">Responder</string>
+    <string name="sms_instruction_title">Código de activación  Paso 1 de 3</string>
+    <string name="text_instructions">Introduzca el código de activación que recibirá via SMS tras solicitarlo desde su banca electrónica. Si transcurridos 5 minutos desde sus solicitur no lo ha recibido, repita el proceso o contacte con su servicio de atencioón al cliente.</string>
+    <string name="btn_confirmar">Confirmar</string>
+</resources>

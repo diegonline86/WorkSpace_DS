@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Nº telefono"
+        android:id="@+id/textViewTelNumber"
+        android:layout_marginTop="23dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="fecha y hora"
+        android:id="@+id/textViewCallDateTime"
+        android:layout_alignTop="@+id/textViewCallDuration"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageViewCallState"
+        android:src="@drawable/ic_call_outcoming"
+        android:layout_alignTop="@+id/textViewTelNumber"
+        android:layout_alignEnd="@+id/textViewCallDuration" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="duracion"
+        android:id="@+id/textViewCallDuration"
+        android:layout_below="@+id/imageViewCallState"
+        android:layout_alignParentEnd="true" />
+</RelativeLayout>

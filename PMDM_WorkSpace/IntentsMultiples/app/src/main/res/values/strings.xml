@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">IntentsMultiples</string>
+    <string name="action_settings">Settings</string>
+    <string name="hint_dial">Número de teléfono a marcar</string>
+    <string name="hint_search_map">Dirección a buscar en maps</string>
+    <string name="hint_email">Email destinatario</string>
+    <string name="hint_subject">Asunto</string>
+    <string name="hint_message">Mensaje</string>
+
+    <string name="title_activity_llamar_telefono">LLamarTeléfono</string>
+    <string name="title_activity_buscar_en_mapa">BuscarEnMapa</string>
+    <string name="title_activity_enviar_email">EnviarEmail</string>
+    <string name="main_menu">Menú de opciones</string>
+    <string name="main_btn_call_phone">Llamar por teléfono</string>
+    <string name="main_btn_search_map">Buscar en el mapa</string>
+    <string name="main_btn_send_email">Envío de email</string>
+</resources>

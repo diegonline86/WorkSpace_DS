@@ -1,0 +1,78 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".ListinTelefonicoActivity">
+
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_marcar1"
+        android:layout_marginTop="42dp"
+        android:background="@android:drawable/sym_action_call"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="32dp" />
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/imageViewContact1"
+        android:background="@drawable/contact"
+        android:layout_alignBottom="@+id/textViewContact"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="23dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Carlos"
+        android:id="@+id/textViewContact"
+        android:textSize="20dp"
+        android:layout_alignBottom="@+id/btn_marcar1"
+        android:layout_toEndOf="@+id/imageViewContact1"
+        android:layout_marginStart="20dp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_alignParentStart="true"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_below="@+id/btn_marcar1"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="25dp"
+        android:id="@+id/view" />
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/imageView2"
+        android:background="@drawable/contact"
+        android:layout_marginTop="23dp"
+        android:layout_below="@+id/view"
+        android:layout_alignStart="@+id/imageViewContact1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Clara"
+        android:id="@+id/textViewContact2"
+        android:textSize="20dp"
+        android:layout_alignBottom="@+id/imageView2"
+        android:layout_alignStart="@+id/textViewContact" />
+
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/button"
+        android:background="@android:drawable/sym_action_call"
+        android:layout_alignBottom="@+id/textViewContact2"
+        android:layout_alignStart="@+id/btn_marcar1" />
+
+</RelativeLayout>

@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ListViewLlamadas</string>
+    <string name="registry_call_title">LLAMADAS RECIENTES</string>
+</resources>

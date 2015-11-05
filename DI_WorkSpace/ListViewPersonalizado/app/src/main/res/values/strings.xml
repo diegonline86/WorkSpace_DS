@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ListViewPersonalizado</string>
+    <string name="list_title">Mi lista de compra</string>
+</resources>

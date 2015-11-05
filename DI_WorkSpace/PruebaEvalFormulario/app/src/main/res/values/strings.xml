@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">PruebaEvalFormulario</string>
+    <string name="login_title">Login</string>
+    <string name="chek_conditions_terms">Aceptar los términos y condiciones</string>
+    <string name="btn_log_in">Entrar</string>
+    <string name="hint_login_email">Email</string>
+    <string name="hint_login_password">Conraseña</string>
+</resources>

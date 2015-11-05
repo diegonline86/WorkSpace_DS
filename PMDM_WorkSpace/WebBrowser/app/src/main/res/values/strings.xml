@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">WebBrowser</string>
+    <string name="hint_web_search">Introduce dirección web</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_book_marks">Favoritos</string>
+</resources>

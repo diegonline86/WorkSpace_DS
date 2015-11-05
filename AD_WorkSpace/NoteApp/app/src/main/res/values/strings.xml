@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">NoteApp</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="hello">Hello World, FileChooser!</string>
+    <string name="folder">Folder</string>
+    <string name="parentDirectory">Parent Directory</string>
+    <string name="fileSize">File Size</string>
+    <string name="currentDir">Current Dir</string>
+    <string name="hint_file_content">Contenido del fichero</string>
+    <string name="hint_file_title">Nombre del fichero txt</string>
+    <string name="btn_save">Guardar</string>
+</resources>

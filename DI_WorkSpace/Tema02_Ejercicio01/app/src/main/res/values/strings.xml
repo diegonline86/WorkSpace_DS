@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Tema02_Ejercicio01</string>
+    <string name="action_settings">Configuración</string>
+    <string name="main_title">Andalucía Compromiso Digital</string>
+    <string name="register_title">Registro</string>
+    <string name="register_name">Nombre</string>
+    <string name="register_surname">Apellidos</string>
+    <string name="register_email">"Correo electronico"</string>
+    <string name="register_nif_nie">NIF/NIE</string>
+    <string name="register_diability">Discapacidad</string>
+    <string name="register_disability_grade">Grado</string>
+    <string name="register_telephone">Teléfono</string>
+    <string name="register_birthday">Fecha de Nacimiento</string>
+    <string name="register_send">ENVIAR</string>
+</resources>

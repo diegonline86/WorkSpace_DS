@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">DescargaImagen</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="btn_download_handler">Descarga Handler</string>
+    <string name="btn_download_asynctask">Descarga AsyncTask</string>
+    <string name="title_activity_descarga_handler">DescargaHandler</string>
+    <string name="title_activity_descarga_async_task">DescargaAsyncTask</string>
+    <string name="hint_download">Introduce url de descarga</string>
+    <string name="url_descarga_handler">http://2.bp.blogspot.com/_ZKZj1GyPcjM/TJ4BbpgD9XI/AAAAAAAACg8/J12Edr-DM3c/s1600/SuperMarioPartyArtwork.png</string>
+    <string name="btn_download">Descarga</string>
+    <string name="url_download_asyntask">https://mariaelenagallardo.files.wordpress.com/2011/11/foto2.jpg</string>
+    >
+</resources>

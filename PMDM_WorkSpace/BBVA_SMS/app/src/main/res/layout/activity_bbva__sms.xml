@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BBVA_SMS"
+    android:background="#e6e5e5">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/sms_instruction_title"
+        android:id="@+id/textViewTitle"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="25dp"
+        android:textSize="20dp"
+        android:textColor="#469ef1"
+        android:textStyle="bold"
+        android:padding="5dp"
+        android:background="@android:color/white"
+        android:textAlignment="center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/text_instructions"
+        android:id="@+id/textViewInstructions"
+        android:layout_below="@+id/textViewTitle"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="40dp"
+        android:textSize="15dp"
+        android:textColor="#6d6c6c"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/editTextSmsCode"
+        android:layout_marginTop="33dp"
+        android:layout_below="@+id/textViewInstructions"
+        android:layout_alignEnd="@+id/textViewInstructions"
+        android:layout_alignParentStart="false"
+        android:background="@android:color/white"
+        android:textSize="20dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp" />
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_confirmar"
+        android:id="@+id/btnConfirmar"
+        android:layout_marginTop="31dp"
+        android:background="#0e5bb3"
+        android:textColor="@android:color/white"
+        android:layout_below="@+id/editTextSmsCode"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>

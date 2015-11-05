@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ServicioNotificacionsimple</string>
+    <string name="btn_iniciar">Iniciar</string>
+    <string name="btn_parar">Parar</string>
+    <string name="title_songs">Canciones</string>
+    <string-array name="song_list">
+        <item>Aerosmith - Crazy</item>
+        <item>Europe - The final countdown</item>
+        <item>Queen - Show must go on</item>
+    </string-array>
+</resources>

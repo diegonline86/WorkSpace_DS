@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">FuerzaBruta</string>
+    <string name="btn_find_pass">LANZAR</string>
+    <string name="hint_password">Introduce contraseña</string>
+</resources>

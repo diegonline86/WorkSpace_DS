@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">LisViewPersonalizadoNike</string>
+    <string name="workout_title">CHOOSE WORKOUT</string>
+    <string name="duration_time">MIN</string>
+</resources>
