@@ -39,7 +39,7 @@ public class VintageToyCamApp extends AppCompatActivity {
         listPhotos.add(R.drawable.salvador_ubeda);
         listPhotos.add(R.drawable.torre_del_oro);
 
-        fotoActual = listPhotos.get(new Random().nextInt(9));
+        fotoActual = listPhotos.get(new Random().nextInt(listPhotos.size()));
         i = listPhotos.indexOf(fotoActual);
 
         imageViewPhoto = (ImageView) findViewById(R.id.imageViewPhoto);
