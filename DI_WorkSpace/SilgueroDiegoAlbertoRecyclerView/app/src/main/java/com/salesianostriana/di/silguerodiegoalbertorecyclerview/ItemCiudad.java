@@ -5,20 +5,23 @@ package com.salesianostriana.di.silguerodiegoalbertorecyclerview;
  */
 public class ItemCiudad {
 
-    private int imagen;
+    private int n_hanbitantes, rating;
     private String nombre;
+    private boolean aeropuerto;
 
-    public ItemCiudad(int imagen, String nombre) {
-        this.imagen = imagen;
+    public ItemCiudad(int n_habitantes, String nombre, int rating, boolean aeropuerto) {
+        this.n_hanbitantes = n_habitantes;
         this.nombre = nombre;
+        this.rating = rating;
+        this.aeropuerto = aeropuerto;
     }
 
-    public int getImagen() {
-        return imagen;
+    public int getN_hanbitantes() {
+        return n_hanbitantes;
     }
 
-    public void setImagen(int imagen) {
-        this.imagen = imagen;
+    public void setN_hanbitantes(int n_hanbitantes) {
+        this.n_hanbitantes = n_hanbitantes;
     }
 
     public String getNombre() {
@@ -27,5 +30,21 @@ public class ItemCiudad {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    public boolean isAeropuerto() {
+        return aeropuerto;
+    }
+
+    public void setAeropuerto(boolean aeropuerto) {
+        this.aeropuerto = aeropuerto;
     }
 }
