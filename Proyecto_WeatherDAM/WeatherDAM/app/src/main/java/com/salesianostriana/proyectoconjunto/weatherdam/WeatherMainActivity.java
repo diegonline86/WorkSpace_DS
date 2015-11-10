@@ -1,6 +1,7 @@
 package com.salesianostriana.proyectoconjunto.weatherdam;
 
 import android.content.ClipData;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -57,7 +58,7 @@ public class WeatherMainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_configuration) {
             return true;
         }
 
@@ -74,7 +75,7 @@ public class WeatherMainActivity extends AppCompatActivity {
 
 
             try {
-                url = new URL("http://api.openweathermap.org/data/2.5/weather?q=Seville,es&appid=616440c75d43cf432ff5518ff8b6ee33");
+                url = new URL("http://api.openweathermap.org/data/2.5/weather?q=Seville,es&units=metric&appid=616440c75d43cf432ff5518ff8b6ee33");
                 br = new BufferedReader(new InputStreamReader(url.openStream()));
 
                 Gson gson = new Gson();

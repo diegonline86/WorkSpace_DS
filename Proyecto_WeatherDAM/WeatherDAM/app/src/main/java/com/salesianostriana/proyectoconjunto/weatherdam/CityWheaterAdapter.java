@@ -64,7 +64,7 @@ public class CityWheaterAdapter extends RecyclerView.Adapter<CityWheaterAdapter.
 
         holder.textViewCityWeatherState.setText(weather.getDescription());
         holder.textViewCityWeatherLocation.setText(itemActual.getName());
-        holder.textViewCityWeatherTemp.setText(itemActual.getMain().getTemp());
+        holder.textViewCityWeatherTemp.setText(itemActual.getMain().getTemp()+"º");
 
     }
 

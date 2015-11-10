@@ -3,15 +3,10 @@
     xmlns:compat="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/action_search"
         android:title="Buscar"
-        android:icon="@android:drawable/ic_menu_search"
+        android:icon="@android:drawable/ic_menu_add"
         compat:showAsAction="ifRoom|withText" />
     <item android:id="@+id/action_configuration"
-        android:title="Configuración"
-        android:icon="@android:drawable/ic_menu_manage"
-        compat:showAsAction="ifRoom|withText"/>
-
-    <item android:id="@+id/action_logout"
-        android:title="Salir"
+        android:title="Configuracion"
         android:icon="@android:drawable/ic_menu_delete" />
 
 </menu>
