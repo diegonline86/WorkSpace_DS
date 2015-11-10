@@ -1,7 +1,11 @@
 package com.salesianostriana.proyectoconjunto.weatherdam;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -16,7 +20,7 @@ import java.util.List;
 /**
  * Created by das on 10/11/2015.
  */
-public class CityWheaterAdapter extends RecyclerView.Adapter<CityWheaterAdapter.ViewHolder> {
+public class CityWheaterAdapter extends RecyclerView.Adapter<CityWheaterAdapter.ViewHolder>{
     private List<ItemCityWeather> mDataset;
 
     // Provide a reference to the views for each data item
@@ -35,6 +39,13 @@ public class CityWheaterAdapter extends RecyclerView.Adapter<CityWheaterAdapter.
             textViewCityWeatherLocation = (TextView)v.findViewById(R.id.textViewLocation);
             textViewCityWeatherTemp = (TextView) v.findViewById(R.id.textViewTemp);
             imgViewCityWeatherState = (ImageView) v.findViewById(R.id.imgViewWeatherState);
+            v.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(v.getContext(),WeatherDetailsActivity.class);
+                    v.getContext().startActivity(i);
+                }
+            });
         }
     }
 
@@ -73,4 +84,5 @@ public class CityWheaterAdapter extends RecyclerView.Adapter<CityWheaterAdapter.
     public int getItemCount() {
         return mDataset.size();
     }
+
 }

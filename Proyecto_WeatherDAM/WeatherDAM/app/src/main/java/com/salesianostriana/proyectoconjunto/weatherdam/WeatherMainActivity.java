@@ -1,6 +1,6 @@
 package com.salesianostriana.proyectoconjunto.weatherdam;
 
-import android.content.ClipData;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.gson.Gson;
 import com.salesianostriana.proyectoconjunto.weatherdam.model.ItemCityWeather;
@@ -30,6 +31,7 @@ public class WeatherMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather_main);
 
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xff2196f3));
         listItemWeatherCity = new ArrayList<>();
 
         rv = (RecyclerView)findViewById(R.id.my_recycler_view);
@@ -39,7 +41,6 @@ public class WeatherMainActivity extends AppCompatActivity {
         rv.setLayoutManager(llm);
 
         new GetItemCityWeather().execute();
-
 
     }
 
