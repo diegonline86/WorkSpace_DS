@@ -21,7 +21,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/cityWeatherState"
+                android:id="@+id/textViewCityWeatherState"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="estado"
@@ -43,8 +43,8 @@
                 android:layout_height="wrap_content"
                 android:text="ciudad"
                 android:id="@+id/textViewLocation"
-                android:layout_below="@+id/cityWeatherState"
-                android:layout_alignStart="@+id/cityWeatherState"
+                android:layout_below="@+id/textViewCityWeatherState"
+                android:layout_alignStart="@+id/textViewCityWeatherState"
                 android:layout_marginTop="16dp" />
 
             <TextView
@@ -53,8 +53,8 @@
                 android:text="temp"
                 android:id="@+id/textViewTemp"
                 android:layout_marginStart="27dp"
-                android:layout_alignTop="@+id/cityWeatherState"
-                android:layout_toEndOf="@+id/cityWeatherState"
+                android:layout_alignTop="@+id/textViewCityWeatherState"
+                android:layout_toEndOf="@+id/textViewCityWeatherState"
                 android:textSize="20dp" />
 
         </RelativeLayout>

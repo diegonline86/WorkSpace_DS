@@ -3,16 +3,14 @@ package com.salesianostriana.proyectoconjunto.weatherdam.model;
 /**
  * Created by das on 10/11/2015.
  */
-public class Weather
-{
+public class Weather {
+    //Atributos
     private String id;
-
     private String icon;
-
     private String description;
-
     private String main;
 
+    //Getters y setters
     public String getId ()
     {
         return id;
