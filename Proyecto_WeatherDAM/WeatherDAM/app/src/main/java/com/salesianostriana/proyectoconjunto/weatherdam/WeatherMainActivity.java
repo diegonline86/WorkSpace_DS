@@ -1,15 +1,17 @@
 package com.salesianostriana.proyectoconjunto.weatherdam;
 
-import android.content.Intent;
+
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+
+import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.salesianostriana.proyectoconjunto.weatherdam.model.ItemCityWeather;
@@ -22,9 +24,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WeatherMainActivity extends AppCompatActivity {
-    RecyclerView rv;
-    List<ItemCityWeather> listItemWeatherCity;
+public class WeatherMainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
+    private RecyclerView rv;
+    private List<ItemCityWeather> listItemWeatherCity;
+    private SearchView mSearchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,13 +44,18 @@ public class WeatherMainActivity extends AppCompatActivity {
         rv.setLayoutManager(llm);
 
         new GetItemCityWeather().execute();
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_opciones, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        mSearchView = (SearchView) searchItem.getActionView();
+        mSearchView.setQueryHint("Type city...");
+        mSearchView.setOnQueryTextListener(this);
+
         return true;
     }
 
@@ -64,6 +72,18 @@ public class WeatherMainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        Toast.makeText(WeatherMainActivity.this, query, Toast.LENGTH_SHORT).show();
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        Toast.makeText(WeatherMainActivity.this, "Buscando...", Toast.LENGTH_SHORT).show();
+        return false;
     }
 
     private class GetItemCityWeather extends AsyncTask<Void,Void,ItemCityWeather>{

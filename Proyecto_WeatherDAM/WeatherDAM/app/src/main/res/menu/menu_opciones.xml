@@ -3,8 +3,9 @@
     xmlns:compat="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/action_search"
         android:title="Buscar"
-        android:icon="@android:drawable/ic_menu_add"
-        compat:showAsAction="ifRoom|withText" />
+        android:icon="@android:drawable/ic_menu_search"
+        compat:showAsAction="ifRoom|withText"
+        compat:actionViewClass="android.support.v7.widget.SearchView"/>
     <item android:id="@+id/action_configuration"
         android:title="Configuracion"
         android:icon="@android:drawable/ic_menu_delete" />
