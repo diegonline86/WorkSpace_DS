@@ -11,9 +11,9 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.salesianostriana.proyectoconjunto.weatherdam.adapter.CityWheaterAdapter;
 import com.salesianostriana.proyectoconjunto.weatherdam.model.ItemCityWeather;
 
 import java.io.BufferedReader;
@@ -21,12 +21,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 public class WeatherMainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
     private RecyclerView rv;
-    private List<ItemCityWeather> listItemWeatherCity;
+    //private List<ItemCityWeather> listItemWeatherCity;
     private SearchView mSearchView;
 
     @Override
@@ -35,7 +33,7 @@ public class WeatherMainActivity extends AppCompatActivity implements SearchView
         setContentView(R.layout.activity_weather_main);
 
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xff2196f3));
-        listItemWeatherCity = new ArrayList<>();
+        //listItemWeatherCity = new ArrayList<>();
 
         rv = (RecyclerView)findViewById(R.id.my_recycler_view);
         rv.setHasFixedSize(true);
@@ -43,7 +41,6 @@ public class WeatherMainActivity extends AppCompatActivity implements SearchView
         LinearLayoutManager llm = new LinearLayoutManager(this);
         rv.setLayoutManager(llm);
 
-        new GetItemCityWeather().execute();
     }
 
     @Override
@@ -76,17 +73,21 @@ public class WeatherMainActivity extends AppCompatActivity implements SearchView
 
     @Override
     public boolean onQueryTextSubmit(String query) {
-        Toast.makeText(WeatherMainActivity.this, query, Toast.LENGTH_SHORT).show();
+        new GetItemCityWeather(query).execute();
         return false;
     }
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        Toast.makeText(WeatherMainActivity.this, "Buscando...", Toast.LENGTH_SHORT).show();
         return false;
     }
 
     private class GetItemCityWeather extends AsyncTask<Void,Void,ItemCityWeather>{
+        String city;
+
+        public GetItemCityWeather(String _city){
+            city = _city;
+        }
 
         @Override
         protected ItemCityWeather doInBackground(Void... params) {
@@ -96,7 +97,10 @@ public class WeatherMainActivity extends AppCompatActivity implements SearchView
 
 
             try {
-                url = new URL("http://api.openweathermap.org/data/2.5/weather?q=Triana,es&units=metric&appid=616440c75d43cf432ff5518ff8b6ee33");
+                //quitamos los espacios para adaptarlo al formato url
+                city.replace(" ","");
+                //encajamos la variable en el parametro de ciudades
+                url = new URL("http://api.openweathermap.org/data/2.5/weather?q="+city+"&units=metric&appid=616440c75d43cf432ff5518ff8b6ee33");
                 br = new BufferedReader(new InputStreamReader(url.openStream()));
 
                 Gson gson = new Gson();
@@ -117,8 +121,8 @@ public class WeatherMainActivity extends AppCompatActivity implements SearchView
         protected void onPostExecute(ItemCityWeather itemCityWeather) {
             super.onPostExecute(itemCityWeather);
 
-            listItemWeatherCity.add(itemCityWeather);
-            rv.setAdapter(new CityWheaterAdapter(listItemWeatherCity));
+
+            rv.setAdapter(new CityWheaterAdapter(itemCityWeather));
         }
     }
 }

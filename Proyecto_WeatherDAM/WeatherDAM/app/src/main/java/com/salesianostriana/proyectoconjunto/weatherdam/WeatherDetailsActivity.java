@@ -11,10 +11,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.salesianostriana.proyectoconjunto.weatherdam.fragments.WeatherDetailFragment;
+import com.salesianostriana.proyectoconjunto.weatherdam.fragments.WeatherHourFragment;
+import com.salesianostriana.proyectoconjunto.weatherdam.fragments.WeatherWeeklyFragment;
 
 public class WeatherDetailsActivity extends AppCompatActivity{
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +43,7 @@ public class WeatherDetailsActivity extends AppCompatActivity{
         final TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
         tabLayout.setBackground(new ColorDrawable(0xff2196f3));
+
 
     }
 

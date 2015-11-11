@@ -1,27 +1,23 @@
-package com.salesianostriana.proyectoconjunto.weatherdam;
+package com.salesianostriana.proyectoconjunto.weatherdam.adapter;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.salesianostriana.proyectoconjunto.weatherdam.R;
+import com.salesianostriana.proyectoconjunto.weatherdam.WeatherDetailsActivity;
 import com.salesianostriana.proyectoconjunto.weatherdam.model.ItemCityWeather;
-import com.salesianostriana.proyectoconjunto.weatherdam.model.Main;
 import com.salesianostriana.proyectoconjunto.weatherdam.model.Weather;
-
-import java.util.List;
 
 /**
  * Created by das on 10/11/2015.
  */
 public class CityWheaterAdapter extends RecyclerView.Adapter<CityWheaterAdapter.ViewHolder>{
-    private List<ItemCityWeather> mDataset;
+    private ItemCityWeather mDataset;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -32,6 +28,7 @@ public class CityWheaterAdapter extends RecyclerView.Adapter<CityWheaterAdapter.
         public TextView textViewCityWeatherLocation;
         public TextView textViewCityWeatherTemp;
         public ImageView imgViewCityWeatherState;
+        public String id;
 
         public ViewHolder(View v) {
             super(v);
@@ -39,10 +36,13 @@ public class CityWheaterAdapter extends RecyclerView.Adapter<CityWheaterAdapter.
             textViewCityWeatherLocation = (TextView)v.findViewById(R.id.textViewLocation);
             textViewCityWeatherTemp = (TextView) v.findViewById(R.id.textViewTemp);
             imgViewCityWeatherState = (ImageView) v.findViewById(R.id.imgViewWeatherState);
+
+
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent i = new Intent(v.getContext(), WeatherDetailsActivity.class);
+                    i.putExtra("weatherID",id);
                     v.getContext().startActivity(i);
                 }
             });
@@ -50,7 +50,7 @@ public class CityWheaterAdapter extends RecyclerView.Adapter<CityWheaterAdapter.
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public CityWheaterAdapter(List<ItemCityWeather> myDataset) {
+    public CityWheaterAdapter(ItemCityWeather myDataset) {
         mDataset = myDataset;
     }
 
@@ -70,20 +70,20 @@ public class CityWheaterAdapter extends RecyclerView.Adapter<CityWheaterAdapter.
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        ItemCityWeather itemActual = mDataset.get(position);
+        ItemCityWeather itemActual = mDataset;
         Weather weather = itemActual.getWeather()[0];
-        String temp = itemActual.getMain().getTemp();
 
         holder.textViewCityWeatherState.setText(weather.getDescription());
         holder.textViewCityWeatherLocation.setText(itemActual.getName());
-        holder.textViewCityWeatherTemp.setText(temp.substring(0,temp.indexOf('.'))+"º");
+        holder.textViewCityWeatherTemp.setText(itemActual.getMain().getTemp()+"º");
+        holder.id = itemActual.getId();
 
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return mDataset.size();
+        return 1;
     }
 
 }
