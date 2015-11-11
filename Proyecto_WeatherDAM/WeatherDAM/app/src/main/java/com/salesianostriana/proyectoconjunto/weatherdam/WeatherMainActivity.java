@@ -76,7 +76,7 @@ public class WeatherMainActivity extends AppCompatActivity {
 
 
             try {
-                url = new URL("http://api.openweathermap.org/data/2.5/weather?q=Seville,es&units=metric&appid=616440c75d43cf432ff5518ff8b6ee33");
+                url = new URL("http://api.openweathermap.org/data/2.5/weather?q=Triana,es&units=metric&appid=616440c75d43cf432ff5518ff8b6ee33");
                 br = new BufferedReader(new InputStreamReader(url.openStream()));
 
                 Gson gson = new Gson();

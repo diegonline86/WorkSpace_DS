@@ -42,7 +42,7 @@ public class CityWheaterAdapter extends RecyclerView.Adapter<CityWheaterAdapter.
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent i = new Intent(v.getContext(),WeatherDetailsActivity.class);
+                    Intent i = new Intent(v.getContext(), WeatherDetailsActivity.class);
                     v.getContext().startActivity(i);
                 }
             });
@@ -72,10 +72,11 @@ public class CityWheaterAdapter extends RecyclerView.Adapter<CityWheaterAdapter.
         // - replace the contents of the view with that element
         ItemCityWeather itemActual = mDataset.get(position);
         Weather weather = itemActual.getWeather()[0];
+        String temp = itemActual.getMain().getTemp();
 
         holder.textViewCityWeatherState.setText(weather.getDescription());
         holder.textViewCityWeatherLocation.setText(itemActual.getName());
-        holder.textViewCityWeatherTemp.setText(itemActual.getMain().getTemp()+"º");
+        holder.textViewCityWeatherTemp.setText(temp.substring(0,temp.indexOf('.'))+"º");
 
     }
 
