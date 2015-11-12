@@ -1,16 +1,17 @@
-package com.salesianostriana.proyectoconjunto.weatherdam.model;
+package com.salesianostriana.proyectoconjunto.weatherdam.model.itemCityWeather;
 
 /**
- * Created by das on 10/11/2015.
+ * Created by Diego on 11/11/2015.
  */
 public class Weather {
-    //Atributos
     private String id;
+
     private String icon;
+
     private String description;
+
     private String main;
 
-    //Getters y setters
     public String getId ()
     {
         return id;

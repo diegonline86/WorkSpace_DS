@@ -1,10 +1,9 @@
-package com.salesianostriana.proyectoconjunto.weatherdam.model;
+package com.salesianostriana.proyectoconjunto.weatherdam.model.itemCityWeather;
 
 /**
- * Created by das on 10/11/2015.
+ * Created by Diego on 11/11/2015.
  */
-public class Wind
-{
+public class Wind {
     private String speed;
 
     private String deg;

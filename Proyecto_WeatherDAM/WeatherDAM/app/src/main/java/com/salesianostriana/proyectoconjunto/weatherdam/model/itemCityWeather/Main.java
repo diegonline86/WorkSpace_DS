@@ -1,10 +1,10 @@
-package com.salesianostriana.proyectoconjunto.weatherdam.model;
+package com.salesianostriana.proyectoconjunto.weatherdam.model.itemCityWeather;
 
 /**
- * Created by das on 10/11/2015.
+ * Created by Diego on 11/11/2015.
  */
-public class Main
-{
+public class Main {
+
     private String humidity;
 
     private String pressure;

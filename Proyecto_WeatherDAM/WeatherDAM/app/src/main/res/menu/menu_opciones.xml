@@ -4,8 +4,8 @@
     <item android:id="@+id/action_search"
         android:title="Buscar"
         android:icon="@android:drawable/ic_menu_search"
-        compat:showAsAction="ifRoom|withText"
-        compat:actionViewClass="android.support.v7.widget.SearchView"/>
+        compat:showAsAction="ifRoom|collapseActionView"
+        compat:actionViewClass="android.widget.AutoCompleteTextView"/>
     <item android:id="@+id/action_configuration"
         android:title="Configuracion"
         android:icon="@android:drawable/ic_menu_delete" />

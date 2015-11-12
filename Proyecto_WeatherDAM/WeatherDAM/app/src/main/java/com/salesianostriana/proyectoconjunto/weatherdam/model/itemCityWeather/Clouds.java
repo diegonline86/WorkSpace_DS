@@ -1,10 +1,9 @@
-package com.salesianostriana.proyectoconjunto.weatherdam.model;
+package com.salesianostriana.proyectoconjunto.weatherdam.model.itemCityWeather;
 
 /**
- * Created by das on 10/11/2015.
+ * Created by Diego on 11/11/2015.
  */
-public class Clouds
-{
+public class Clouds {
     private String all;
 
     public String getAll ()

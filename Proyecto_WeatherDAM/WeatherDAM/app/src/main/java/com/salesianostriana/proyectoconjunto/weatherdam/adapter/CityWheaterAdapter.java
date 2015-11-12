@@ -10,8 +10,9 @@ import android.widget.TextView;
 
 import com.salesianostriana.proyectoconjunto.weatherdam.R;
 import com.salesianostriana.proyectoconjunto.weatherdam.WeatherDetailsActivity;
-import com.salesianostriana.proyectoconjunto.weatherdam.model.ItemCityWeather;
-import com.salesianostriana.proyectoconjunto.weatherdam.model.Weather;
+import com.salesianostriana.proyectoconjunto.weatherdam.model.itemCity.ItemCity;
+import com.salesianostriana.proyectoconjunto.weatherdam.model.itemCityWeather.ItemCityWeather;
+import com.salesianostriana.proyectoconjunto.weatherdam.model.itemCityWeather.Weather;
 
 /**
  * Created by das on 10/11/2015.

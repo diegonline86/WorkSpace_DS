@@ -1,40 +1,31 @@
-package com.salesianostriana.proyectoconjunto.weatherdam.model;
+package com.salesianostriana.proyectoconjunto.weatherdam.model.itemCityWeather;
 
 /**
- * Created by das on 10/11/2015.
+ * Created by Diego on 11/11/2015.
  */
 public class ItemCityWeather {
-    //Atributos
     private String id;
+
     private String dt;
+
     private Clouds clouds;
+
     private Coord coord;
+
     private Wind wind;
+
     private String cod;
+
     private Sys sys;
+
     private String name;
+
     private String base;
+
     private Weather[] weather;
+
     private Main main;
 
-    //Constructor
-    public ItemCityWeather(String id, String dt, Clouds clouds, Coord coord, Wind wind,
-                           String cod, Sys sys, String name,
-                           String base, Weather[] weather, Main main) {
-        this.id = id;
-        this.dt = dt;
-        this.clouds = clouds;
-        this.coord = coord;
-        this.wind = wind;
-        this.cod = cod;
-        this.sys = sys;
-        this.name = name;
-        this.base = base;
-        this.weather = weather;
-        this.main = main;
-    }
-
-    //Getters y setters
     public String getId ()
     {
         return id;

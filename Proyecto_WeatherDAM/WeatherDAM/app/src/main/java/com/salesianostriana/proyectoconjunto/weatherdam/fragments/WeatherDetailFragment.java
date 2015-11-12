@@ -1,6 +1,5 @@
 package com.salesianostriana.proyectoconjunto.weatherdam.fragments;
 
-import android.content.ClipData;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,8 +11,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.salesianostriana.proyectoconjunto.weatherdam.R;
-import com.salesianostriana.proyectoconjunto.weatherdam.adapter.CityWheaterAdapter;
-import com.salesianostriana.proyectoconjunto.weatherdam.model.ItemCityWeather;
+import com.salesianostriana.proyectoconjunto.weatherdam.model.itemCityWeather.ItemCityWeather;
 
 import java.io.BufferedReader;
 import java.io.IOException;
