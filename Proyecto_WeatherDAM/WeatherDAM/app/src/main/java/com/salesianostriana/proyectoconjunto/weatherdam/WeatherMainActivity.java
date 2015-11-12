@@ -51,6 +51,7 @@ public class WeatherMainActivity extends AppCompatActivity {
         LinearLayoutManager llm = new LinearLayoutManager(this);
         rv.setLayoutManager(llm);
 
+
     }
 
     @Override
@@ -68,8 +69,8 @@ public class WeatherMainActivity extends AppCompatActivity {
 
 
 
-         new GetItemCity().execute();
-        //new GetItemCityWeather("Sevilla").execute();
+
+        new GetItemCityWeather("Sevilla").execute();
 
         /*autoSearchText.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -114,7 +115,7 @@ public class WeatherMainActivity extends AppCompatActivity {
             BufferedReader br = null;
             ItemCityWeather result = null;
 
-
+            /*
             try {
                 //quitamos los espacios para adaptarlo al formato url
                 city.replace(" ","");
@@ -132,7 +133,7 @@ public class WeatherMainActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
+            */
             return result;
         }
 
@@ -147,7 +148,6 @@ public class WeatherMainActivity extends AppCompatActivity {
 
 
     private class GetItemCity extends AsyncTask<Void,Void,ItemCity>{
-        private String city;
 
         @Override
         protected ItemCity doInBackground(Void... params) {
@@ -157,38 +157,31 @@ public class WeatherMainActivity extends AppCompatActivity {
 
 
             try {
-                //quitamos los espacios para adaptarlo al formato url
-
                 //encajamos la variable en el parametro de ciudades
                 url = new URL("https://maps.googleapis.com/maps/api/place/autocomplete/json?input=Sevilla&types=%28cities%29&language=es_ES&key=AIzaSyAKlKgw0xcUOGqWvSo2qOn_zdjXgY8xi3M");
-                br = new BufferedReader(new InputStreamReader(url.openStream()));
+                //br = new BufferedReader(new InputStreamReader(url.openStream()));
 
-                Gson gson = new Gson();
+                /*Gson gson = new Gson();
 
-                result = gson.fromJson(br, ItemCity.class);
+                result = gson.fromJson(br, ItemCity.class);*/
 
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
+            }finally {
+                if(br!=null){
+                    try {
+                        br.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
 
             return result;
         }
 
-        @Override
-        protected void onPostExecute(ItemCity itemCity) {
-            super.onPostExecute(itemCity);
-            /*
-            List<String> listCities = new ArrayList<>();
-
-            //Recorremos todas las ciudades
-            for(int i=0; i<itemCity.getPredictions().length; i++){
-                listCities.add(itemCity.getPredictions()[i].getDescription());
-            }
-            */
-            //autoSearchText.setAdapter(new ArrayAdapter<String>(WeatherMainActivity.this, android.R.layout.simple_dropdown_item_1line, listCities));
-        }
     }
 }
