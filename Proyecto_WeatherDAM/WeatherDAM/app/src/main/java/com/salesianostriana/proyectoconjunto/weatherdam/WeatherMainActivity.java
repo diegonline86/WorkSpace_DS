@@ -206,7 +206,6 @@ public class WeatherMainActivity extends AppCompatActivity {
                 }
             }
 
-            //
             autoSearchText.setAdapter(new ArrayAdapter<String>(WeatherMainActivity.this,android.R.layout.simple_dropdown_item_1line, listCities));
             autoSearchText.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override

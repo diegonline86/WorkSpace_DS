@@ -11,12 +11,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.salesianostriana.proyectoconjunto.weatherdam.fragments.WeatherDetailFragment;
-import com.salesianostriana.proyectoconjunto.weatherdam.fragments.WeatherHourFragment;
-import com.salesianostriana.proyectoconjunto.weatherdam.fragments.WeatherWeeklyFragment;
+import com.salesianostriana.proyectoconjunto.weatherdam.fragments.Weather5DaysFragment;
 
 public class WeatherDetailsActivity extends AppCompatActivity{
     private SectionsPagerAdapter mSectionsPagerAdapter;
@@ -87,9 +84,7 @@ public class WeatherDetailsActivity extends AppCompatActivity{
             if(position==0) {
                 return new WeatherDetailFragment();
             } else if(position==1) {
-                return new WeatherWeeklyFragment();
-            } else if(position==2) {
-                return new WeatherHourFragment();
+                return new Weather5DaysFragment();
             }
 
             return null;
@@ -97,19 +92,17 @@ public class WeatherDetailsActivity extends AppCompatActivity{
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
-            return 3;
+            // Show 2 total pages.
+            return 2;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Detalle";
+                    return "Detail";
                 case 1:
-                    return "Semana";
-                case 2:
-                    return "Horas";
+                    return "5 Days";
             }
             return null;
         }
