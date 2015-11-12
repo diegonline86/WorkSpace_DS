@@ -8,6 +8,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import android.support.v7.widget.SearchView;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -60,29 +63,32 @@ public class WeatherMainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_opciones, menu);
 
         MenuItem searchItem = menu.findItem(R.id.action_search);
-        /*mSearchView = (SearchView.SearchAutoComplete) searchItem.getActionView();
-        mSearchView.setHint("Search city...");
-        mSearchView.setAdapter(new ArrayAdapter<String>(this,R.layout.list_item_city,cities));*/
         autoSearchText = (AutoCompleteTextView) searchItem.getActionView();
         autoSearchText.setHint("Search city");
         autoSearchText.setWidth(500);
 
 
 
-
-        new GetItemCityWeather("Sevilla").execute();
-
-        /*autoSearchText.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        autoSearchText.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                new GetItemCity(s.toString().replace(" ","")).execute();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
 
             }
-        });*/
+        });
+
+
+        //new GetItemCityWeather("Sevilla").execute();
+
 
         return true;
     }
@@ -115,7 +121,7 @@ public class WeatherMainActivity extends AppCompatActivity {
             BufferedReader br = null;
             ItemCityWeather result = null;
 
-            /*
+
             try {
                 //quitamos los espacios para adaptarlo al formato url
                 city.replace(" ","");
@@ -133,7 +139,7 @@ public class WeatherMainActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            */
+
             return result;
         }
 
@@ -148,6 +154,11 @@ public class WeatherMainActivity extends AppCompatActivity {
 
 
     private class GetItemCity extends AsyncTask<Void,Void,ItemCity>{
+        String city;
+
+        public GetItemCity(String _city){
+            city = _city.toString();
+        }
 
         @Override
         protected ItemCity doInBackground(Void... params) {
@@ -158,12 +169,12 @@ public class WeatherMainActivity extends AppCompatActivity {
 
             try {
                 //encajamos la variable en el parametro de ciudades
-                url = new URL("https://maps.googleapis.com/maps/api/place/autocomplete/json?input=Sevilla&types=%28cities%29&language=es_ES&key=AIzaSyAKlKgw0xcUOGqWvSo2qOn_zdjXgY8xi3M");
-                //br = new BufferedReader(new InputStreamReader(url.openStream()));
+                url = new URL("https://maps.googleapis.com/maps/api/place/autocomplete/json?input="+city+"&types=%28cities%29&language=es_ES&key=AIzaSyAKlKgw0xcUOGqWvSo2qOn_zdjXgY8xi3M");
+                br = new BufferedReader(new InputStreamReader(url.openStream()));
 
-                /*Gson gson = new Gson();
+                Gson gson = new Gson();
 
-                result = gson.fromJson(br, ItemCity.class);*/
+                result = gson.fromJson(br, ItemCity.class);
 
 
             } catch (MalformedURLException e) {
@@ -183,5 +194,27 @@ public class WeatherMainActivity extends AppCompatActivity {
             return result;
         }
 
+        @Override
+        protected void onPostExecute(ItemCity itemCity) {
+            super.onPostExecute(itemCity);
+            final List<String> listCities = new ArrayList<>();
+
+            if(itemCity != null) {
+                for (int i = 0; i < itemCity.getPredictions().length; i++) {
+                    //Voy agregando las ciudades del array de predicciones
+                    listCities.add(itemCity.getPredictions()[i].getDescription());
+                }
+            }
+
+            //
+            autoSearchText.setAdapter(new ArrayAdapter<String>(WeatherMainActivity.this,android.R.layout.simple_dropdown_item_1line, listCities));
+            autoSearchText.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    //Ejecuto la busqueda del tiempo de la ciudad seleccionada
+                    new GetItemCityWeather(listCities.get(position).replace(" ","")).execute();
+                }
+            });
+        }
     }
 }
