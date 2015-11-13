@@ -1,11 +1,11 @@
 package com.salesianostriana.proyectoconjunto.weatherdam.model.itemCityWeather5Days;
 
-import java.util.List;
+
 
 /**
  * Created by das on 12/11/2015.
  */
-public class ItemCity5Days {
+public class ItemCityWeather5Days {
     private String message;
 
     private String cnt;

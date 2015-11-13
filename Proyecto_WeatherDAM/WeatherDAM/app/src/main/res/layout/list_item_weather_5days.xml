@@ -1,41 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical" android:layout_width="wrap_content"
     android:layout_height="match_parent">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
+        android:id="@+id/editTextDay5Days"
         android:text="Day"
-        android:textSize="25dp" />
+        android:textSize="25dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="5dp" />
 
     <ImageView
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:id="@+id/imageView"
-        android:src="@drawable/ic_weather_default" />
+        android:id="@+id/imageView5Days"
+        android:src="@drawable/ic_weather_default"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/editTextDay5Days"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText2"
+        android:id="@+id/editTextMaxTemp5Days"
         android:text="Max"
-        android:textSize="25dp" />
+        android:textSize="25dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/imageView5Days"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Min"
-        android:id="@+id/textView"
-        android:textSize="20dp" />
+        android:id="@+id/textViewMinTemp5Days"
+        android:textSize="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/editTextMaxTemp5Days"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Hum"
-        android:id="@+id/textView2"
-        android:textSize="20dp" />
+        android:id="@+id/textViewHum5Days"
+        android:textSize="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/textViewMinTemp5Days"
+        android:layout_alignParentStart="true" />
 </LinearLayout>

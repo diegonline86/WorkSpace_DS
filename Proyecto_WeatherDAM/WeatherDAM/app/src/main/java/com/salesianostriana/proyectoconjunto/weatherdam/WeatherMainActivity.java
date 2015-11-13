@@ -10,16 +10,12 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.salesianostriana.proyectoconjunto.weatherdam.adapter.CityWheaterAdapter;
@@ -33,7 +29,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 public class WeatherMainActivity extends AppCompatActivity {
     private RecyclerView rv;
@@ -46,14 +41,12 @@ public class WeatherMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_weather_main);
 
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xff2196f3));
-        //listItemWeatherCity = new ArrayList<>();
 
         rv = (RecyclerView)findViewById(R.id.my_recycler_view);
         rv.setHasFixedSize(true);
 
         LinearLayoutManager llm = new LinearLayoutManager(this);
         rv.setLayoutManager(llm);
-
 
     }
 
@@ -65,9 +58,7 @@ public class WeatherMainActivity extends AppCompatActivity {
         MenuItem searchItem = menu.findItem(R.id.action_search);
         autoSearchText = (AutoCompleteTextView) searchItem.getActionView();
         autoSearchText.setHint("Search city");
-        autoSearchText.setWidth(500);
-
-
+        autoSearchText.setWidth(600);
 
         autoSearchText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -85,10 +76,6 @@ public class WeatherMainActivity extends AppCompatActivity {
 
             }
         });
-
-
-        //new GetItemCityWeather("Sevilla").execute();
-
 
         return true;
     }
@@ -210,7 +197,7 @@ public class WeatherMainActivity extends AppCompatActivity {
             autoSearchText.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    //Ejecuto la busqueda del tiempo de la ciudad seleccionada
+                    //Ejecuto la busqueda de la ciudad seleccionada
                     new GetItemCityWeather(listCities.get(position).replace(" ","")).execute();
                 }
             });

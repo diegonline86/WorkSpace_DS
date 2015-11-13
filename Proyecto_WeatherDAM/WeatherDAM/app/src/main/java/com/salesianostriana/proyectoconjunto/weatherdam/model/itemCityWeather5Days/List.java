@@ -13,9 +13,13 @@ public class List
 
     private Sys sys;
 
+    private Snow snow;
+
     private Weather[] weather;
 
     private String dt_txt;
+
+    private Rain rain;
 
     private Main main;
 
@@ -59,6 +63,16 @@ public class List
         this.sys = sys;
     }
 
+    public Snow getSnow ()
+    {
+        return snow;
+    }
+
+    public void setSnow (Snow snow)
+    {
+        this.snow = snow;
+    }
+
     public Weather[] getWeather ()
     {
         return weather;
@@ -79,6 +93,16 @@ public class List
         this.dt_txt = dt_txt;
     }
 
+    public Rain getRain ()
+    {
+        return rain;
+    }
+
+    public void setRain (Rain rain)
+    {
+        this.rain = rain;
+    }
+
     public Main getMain ()
     {
         return main;
@@ -92,6 +116,6 @@ public class List
     @Override
     public String toString()
     {
-        return "ClassPojo [clouds = "+clouds+", dt = "+dt+", wind = "+wind+", sys = "+sys+", weather = "+weather+", dt_txt = "+dt_txt+", main = "+main+"]";
+        return "ClassPojo [clouds = "+clouds+", dt = "+dt+", wind = "+wind+", sys = "+sys+", snow = "+snow+", weather = "+weather+", dt_txt = "+dt_txt+", rain = "+rain+", main = "+main+"]";
     }
 }
