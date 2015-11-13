@@ -48,7 +48,8 @@
                 android:layout_below="@+id/textViewCityWeatherState"
                 android:layout_alignStart="@+id/textViewCityWeatherState"
                 android:layout_marginTop="16dp"
-                android:textColor="#303030" />
+                android:textColor="#303030"
+                android:textSize="17dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -60,6 +61,16 @@
                 android:layout_toEndOf="@+id/textViewCityWeatherState"
                 android:textSize="20dp"
                 android:textColor="#303030" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imgBtnBookMark"
+                android:layout_marginEnd="16dp"
+                android:src="@android:drawable/btn_star_big_off"
+                android:layout_below="@+id/textViewTemp"
+                android:layout_alignParentEnd="true"
+                android:background="@android:color/transparent" />
 
         </RelativeLayout>
 
