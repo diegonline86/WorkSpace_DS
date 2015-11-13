@@ -8,14 +8,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.salesianostriana.proyectoconjunto.weatherdam.R;
-import com.salesianostriana.proyectoconjunto.weatherdam.model.itemCityWeather5Days.ItemCityWeather5Days;
+import com.salesianostriana.proyectoconjunto.weatherdam.model.itemCityWeather5Days.ItemCityWeather5DaysCompact;
+
+import java.util.List;
 
 
 /**
  * Created by das on 12/11/2015.
  */
 public class CityWeather5DaysAdapter extends RecyclerView.Adapter<CityWeather5DaysAdapter.ViewHolder>{
-    private ItemCityWeather5Days mDataset;
+    private List<ItemCityWeather5DaysCompact> mDataset;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -37,7 +39,7 @@ public class CityWeather5DaysAdapter extends RecyclerView.Adapter<CityWeather5Da
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public CityWeather5DaysAdapter(ItemCityWeather5Days myDataset) {
+    public CityWeather5DaysAdapter(List<ItemCityWeather5DaysCompact> myDataset) {
         mDataset = myDataset;
     }
 
@@ -56,16 +58,17 @@ public class CityWeather5DaysAdapter extends RecyclerView.Adapter<CityWeather5Da
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        ItemCityWeather5Days itemActual = mDataset;
-
-
+        ItemCityWeather5DaysCompact itemActual = mDataset.get(position);
+        holder.textViewDay5Days.setText(itemActual.getDay());
+        holder.textViewMaxTemp5Days.setText(itemActual.getMaxTemp());
+        holder.textViewMinTemp5Days.setText(itemActual.getMinTemp());
 
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return 1;
+        return mDataset.size();
     }
 
 

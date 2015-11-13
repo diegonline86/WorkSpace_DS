@@ -71,12 +71,12 @@ public class CityWheaterAdapter extends RecyclerView.Adapter<CityWheaterAdapter.
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         ItemCityWeather itemActual = mDataset;
-        Weather weather = itemActual.getWeather()[0];
+        Weather weather = itemActual.getWeather().get(0);
 
         holder.textViewCityWeatherState.setText(weather.getDescription());
         holder.textViewCityWeatherLocation.setText(itemActual.getName());
-        holder.textViewCityWeatherTemp.setText(itemActual.getMain().getTemp()+"º");
-        holder.id = itemActual.getId();
+        holder.textViewCityWeatherTemp.setText(String.valueOf(itemActual.getMain().getTemp())+"º");
+        holder.id = String.valueOf(itemActual.getId());
 
     }
 

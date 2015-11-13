@@ -1,17 +1,23 @@
-package com.salesianostriana.proyectoconjunto.weatherdam.model;
+package com.salesianostriana.proyectoconjunto.weatherdam.model.itemCityWeather5Days;
 
 /**
  * Created by Diego on 12/11/2015.
  */
-public class CityWeather5DaysCompact {
+public class ItemCityWeather5DaysCompact {
     String day, maxTemp, minTemp,humity, state;
 
-    public CityWeather5DaysCompact(String day, String maxTemp, String minTemp, String humity, String state) {
+    public ItemCityWeather5DaysCompact(String day, String maxTemp, String minTemp, String humity, String state) {
         this.day = day;
         this.maxTemp = maxTemp;
         this.minTemp = minTemp;
         this.humity = humity;
         this.state = state;
+    }
+
+    public ItemCityWeather5DaysCompact(String day, String maxTemp, String minTemp) {
+        this.day = day;
+        this.maxTemp = maxTemp;
+        this.minTemp = minTemp;
     }
 
 

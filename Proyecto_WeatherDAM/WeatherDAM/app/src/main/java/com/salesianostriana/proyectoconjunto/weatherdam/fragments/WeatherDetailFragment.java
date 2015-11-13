@@ -93,13 +93,13 @@ public class WeatherDetailFragment extends Fragment{
             super.onPostExecute(itemCityWeather);
             ItemCityWeather weather = itemCityWeather;
 
-            textViewTemp.setText(weather.getMain().getTemp()+"º");
+            textViewTemp.setText(String.valueOf(weather.getMain().getTemp())+"º");
             textViewLocation.setText(weather.getName());
-            textViewTempMax.setText(weather.getMain().getTemp_max()+"º");
-            textViewTempMin.setText(weather.getMain().getTemp_min()+"º");
-            textViewWind.setText(weather.getWind().getSpeed()+"KMH");
-            textViewHumidity.setText(weather.getMain().getHumidity()+"%");
-            textViewPressure.setText(weather.getMain().getPressure()+"MB");
+            textViewTempMax.setText(String.valueOf(weather.getMain().getTempMax())+"º");
+            textViewTempMin.setText(String.valueOf(weather.getMain().getTempMin())+"º");
+            textViewWind.setText(String.valueOf(weather.getWind().getSpeed())+"KMH");
+            textViewHumidity.setText(String.valueOf(weather.getMain().getHumidity())+"%");
+            textViewPressure.setText(String.valueOf(weather.getMain().getPressure())+"MB");
         }
     }
 }

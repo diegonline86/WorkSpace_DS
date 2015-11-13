@@ -1,36 +1,74 @@
+
 package com.salesianostriana.proyectoconjunto.weatherdam.model.itemCity;
 
-/**
- * Created by das on 10/11/2015.
- */
-public class ItemCity {
-    private Predictions[] predictions;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+import java.util.List;
+
+public class ItemCity {
+
+    @SerializedName("predictions")
+    @Expose
+    private List<Prediction> predictions = new ArrayList<Prediction>();
+    @SerializedName("status")
+    @Expose
     private String status;
 
-    public Predictions[] getPredictions ()
-    {
-        return predictions;
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+    public ItemCity() {
     }
 
-    public void setPredictions (Predictions[] predictions)
-    {
+    /**
+     * 
+     * @param predictions
+     * @param status
+     */
+    public ItemCity(List<Prediction> predictions, String status) {
         this.predictions = predictions;
-    }
-
-    public String getStatus ()
-    {
-        return status;
-    }
-
-    public void setStatus (String status)
-    {
         this.status = status;
     }
 
-    @Override
-    public String toString()
-    {
-        return "ClassPojo [predictions = "+predictions+", status = "+status+"]";
+    /**
+     * 
+     * @return
+     *     The predictions
+     */
+    public List<Prediction> getPredictions() {
+        return predictions;
     }
+
+    /**
+     * 
+     * @param predictions
+     *     The predictions
+     */
+    public void setPredictions(List<Prediction> predictions) {
+        this.predictions = predictions;
+    }
+
+    /**
+     * 
+     * @return
+     *     The status
+     */
+    public String getStatus() {
+        return status;
+    }
+
+    /**
+     * 
+     * @param status
+     *     The status
+     */
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+
+
 }

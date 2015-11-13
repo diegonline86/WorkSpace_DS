@@ -4,44 +4,43 @@ package com.salesianostriana.proyectoconjunto.weatherdam.model.itemCityWeather5D
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+public class Sys_ {
 
-public class Clouds {
-
-    @SerializedName("all")
+    @SerializedName("pod")
     @Expose
-    private long all;
+    private String pod;
 
     /**
      * No args constructor for use in serialization
      * 
      */
-    public Clouds() {
+    public Sys_() {
     }
 
     /**
      * 
-     * @param all
+     * @param pod
      */
-    public Clouds(long all) {
-        this.all = all;
+    public Sys_(String pod) {
+        this.pod = pod;
     }
 
     /**
      * 
      * @return
-     *     The all
+     *     The pod
      */
-    public long getAll() {
-        return all;
+    public String getPod() {
+        return pod;
     }
 
     /**
      * 
-     * @param all
-     *     The all
+     * @param pod
+     *     The pod
      */
-    public void setAll(long all) {
-        this.all = all;
+    public void setPod(String pod) {
+        this.pod = pod;
     }
 
 

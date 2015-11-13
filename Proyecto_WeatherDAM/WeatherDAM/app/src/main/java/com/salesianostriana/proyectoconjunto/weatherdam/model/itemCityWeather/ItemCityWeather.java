@@ -1,144 +1,280 @@
+
 package com.salesianostriana.proyectoconjunto.weatherdam.model.itemCityWeather;
 
-/**
- * Created by Diego on 11/11/2015.
- */
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class ItemCityWeather {
-    private String id;
 
-    private String dt;
-
-    private Clouds clouds;
-
+    @SerializedName("coord")
+    @Expose
     private Coord coord;
-
-    private Wind wind;
-
-    private String cod;
-
-    private Sys sys;
-
-    private String name;
-
+    @SerializedName("weather")
+    @Expose
+    private List<Weather> weather = new ArrayList<Weather>();
+    @SerializedName("base")
+    @Expose
     private String base;
-
-    private Weather[] weather;
-
+    @SerializedName("main")
+    @Expose
     private Main main;
+    @SerializedName("wind")
+    @Expose
+    private Wind wind;
+    @SerializedName("clouds")
+    @Expose
+    private Clouds clouds;
+    @SerializedName("dt")
+    @Expose
+    private long dt;
+    @SerializedName("sys")
+    @Expose
+    private Sys sys;
+    @SerializedName("id")
+    @Expose
+    private long id;
+    @SerializedName("name")
+    @Expose
+    private String name;
+    @SerializedName("cod")
+    @Expose
+    private long cod;
 
-    public String getId ()
-    {
-        return id;
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+    public ItemCityWeather() {
     }
 
-    public void setId (String id)
-    {
-        this.id = id;
-    }
-
-    public String getDt ()
-    {
-        return dt;
-    }
-
-    public void setDt (String dt)
-    {
-        this.dt = dt;
-    }
-
-    public Clouds getClouds ()
-    {
-        return clouds;
-    }
-
-    public void setClouds (Clouds clouds)
-    {
-        this.clouds = clouds;
-    }
-
-    public Coord getCoord ()
-    {
-        return coord;
-    }
-
-    public void setCoord (Coord coord)
-    {
+    /**
+     * 
+     * @param id
+     * @param dt
+     * @param clouds
+     * @param coord
+     * @param wind
+     * @param cod
+     * @param sys
+     * @param name
+     * @param base
+     * @param weather
+     * @param main
+     */
+    public ItemCityWeather(Coord coord, List<Weather> weather, String base, Main main, Wind wind, Clouds clouds, long dt, Sys sys, long id, String name, long cod) {
         this.coord = coord;
-    }
-
-    public Wind getWind ()
-    {
-        return wind;
-    }
-
-    public void setWind (Wind wind)
-    {
+        this.weather = weather;
+        this.base = base;
+        this.main = main;
         this.wind = wind;
-    }
-
-    public String getCod ()
-    {
-        return cod;
-    }
-
-    public void setCod (String cod)
-    {
+        this.clouds = clouds;
+        this.dt = dt;
+        this.sys = sys;
+        this.id = id;
+        this.name = name;
         this.cod = cod;
     }
 
-    public Sys getSys ()
-    {
-        return sys;
+    /**
+     * 
+     * @return
+     *     The coord
+     */
+    public Coord getCoord() {
+        return coord;
     }
 
-    public void setSys (Sys sys)
-    {
-        this.sys = sys;
+    /**
+     * 
+     * @param coord
+     *     The coord
+     */
+    public void setCoord(Coord coord) {
+        this.coord = coord;
     }
 
-    public String getName ()
-    {
-        return name;
-    }
-
-    public void setName (String name)
-    {
-        this.name = name;
-    }
-
-    public String getBase ()
-    {
-        return base;
-    }
-
-    public void setBase (String base)
-    {
-        this.base = base;
-    }
-
-    public Weather[] getWeather ()
-    {
+    /**
+     * 
+     * @return
+     *     The weather
+     */
+    public List<Weather> getWeather() {
         return weather;
     }
 
-    public void setWeather (Weather[] weather)
-    {
+    /**
+     * 
+     * @param weather
+     *     The weather
+     */
+    public void setWeather(List<Weather> weather) {
         this.weather = weather;
     }
 
-    public Main getMain ()
-    {
+    /**
+     * 
+     * @return
+     *     The base
+     */
+    public String getBase() {
+        return base;
+    }
+
+    /**
+     * 
+     * @param base
+     *     The base
+     */
+    public void setBase(String base) {
+        this.base = base;
+    }
+
+    /**
+     * 
+     * @return
+     *     The main
+     */
+    public Main getMain() {
         return main;
     }
 
-    public void setMain (Main main)
-    {
+    /**
+     * 
+     * @param main
+     *     The main
+     */
+    public void setMain(Main main) {
         this.main = main;
     }
 
-    @Override
-    public String toString()
-    {
-        return "ClassPojo [id = "+id+", dt = "+dt+", clouds = "+clouds+", coord = "+coord+", wind = "+wind+", cod = "+cod+", sys = "+sys+", name = "+name+", base = "+base+", weather = "+weather+", main = "+main+"]";
+    /**
+     * 
+     * @return
+     *     The wind
+     */
+    public Wind getWind() {
+        return wind;
     }
+
+    /**
+     * 
+     * @param wind
+     *     The wind
+     */
+    public void setWind(Wind wind) {
+        this.wind = wind;
+    }
+
+    /**
+     * 
+     * @return
+     *     The clouds
+     */
+    public Clouds getClouds() {
+        return clouds;
+    }
+
+    /**
+     * 
+     * @param clouds
+     *     The clouds
+     */
+    public void setClouds(Clouds clouds) {
+        this.clouds = clouds;
+    }
+
+    /**
+     * 
+     * @return
+     *     The dt
+     */
+    public long getDt() {
+        return dt;
+    }
+
+    /**
+     * 
+     * @param dt
+     *     The dt
+     */
+    public void setDt(long dt) {
+        this.dt = dt;
+    }
+
+    /**
+     * 
+     * @return
+     *     The sys
+     */
+    public Sys getSys() {
+        return sys;
+    }
+
+    /**
+     * 
+     * @param sys
+     *     The sys
+     */
+    public void setSys(Sys sys) {
+        this.sys = sys;
+    }
+
+    /**
+     * 
+     * @return
+     *     The id
+     */
+    public long getId() {
+        return id;
+    }
+
+    /**
+     * 
+     * @param id
+     *     The id
+     */
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    /**
+     * 
+     * @return
+     *     The name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * 
+     * @param name
+     *     The name
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * 
+     * @return
+     *     The cod
+     */
+    public long getCod() {
+        return cod;
+    }
+
+    /**
+     * 
+     * @param cod
+     *     The cod
+     */
+    public void setCod(long cod) {
+        this.cod = cod;
+    }
+
+
 }

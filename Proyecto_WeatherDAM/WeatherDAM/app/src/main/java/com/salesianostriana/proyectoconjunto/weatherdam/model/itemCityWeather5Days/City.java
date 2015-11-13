@@ -1,85 +1,163 @@
+
 package com.salesianostriana.proyectoconjunto.weatherdam.model.itemCityWeather5Days;
 
-/**
- * Created by das on 12/11/2015.
- */
-public class City
-{
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+public class City {
+
+    @SerializedName("id")
+    @Expose
+    private long id;
+    @SerializedName("name")
+    @Expose
+    private String name;
+    @SerializedName("coord")
+    @Expose
     private Coord coord;
-
-    private String id;
-
+    @SerializedName("country")
+    @Expose
+    private String country;
+    @SerializedName("population")
+    @Expose
+    private long population;
+    @SerializedName("sys")
+    @Expose
     private Sys sys;
 
-    private String name;
-
-    private String population;
-
-    private String country;
-
-    public Coord getCoord ()
-    {
-        return coord;
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+    public City() {
     }
 
-    public void setCoord (Coord coord)
-    {
-        this.coord = coord;
-    }
-
-    public String getId ()
-    {
-        return id;
-    }
-
-    public void setId (String id)
-    {
+    /**
+     * 
+     * @param coord
+     * @param id
+     * @param sys
+     * @param name
+     * @param population
+     * @param country
+     */
+    public City(long id, String name, Coord coord, String country, long population, Sys sys) {
         this.id = id;
-    }
-
-    public Sys getSys ()
-    {
-        return sys;
-    }
-
-    public void setSys (Sys sys)
-    {
+        this.name = name;
+        this.coord = coord;
+        this.country = country;
+        this.population = population;
         this.sys = sys;
     }
 
-    public String getName ()
-    {
+    /**
+     * 
+     * @return
+     *     The id
+     */
+    public long getId() {
+        return id;
+    }
+
+    /**
+     * 
+     * @param id
+     *     The id
+     */
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    /**
+     * 
+     * @return
+     *     The name
+     */
+    public String getName() {
         return name;
     }
 
-    public void setName (String name)
-    {
+    /**
+     * 
+     * @param name
+     *     The name
+     */
+    public void setName(String name) {
         this.name = name;
     }
 
-    public String getPopulation ()
-    {
-        return population;
+    /**
+     * 
+     * @return
+     *     The coord
+     */
+    public Coord getCoord() {
+        return coord;
     }
 
-    public void setPopulation (String population)
-    {
-        this.population = population;
+    /**
+     * 
+     * @param coord
+     *     The coord
+     */
+    public void setCoord(Coord coord) {
+        this.coord = coord;
     }
 
-    public String getCountry ()
-    {
+    /**
+     * 
+     * @return
+     *     The country
+     */
+    public String getCountry() {
         return country;
     }
 
-    public void setCountry (String country)
-    {
+    /**
+     * 
+     * @param country
+     *     The country
+     */
+    public void setCountry(String country) {
         this.country = country;
     }
 
-    @Override
-    public String toString()
-    {
-        return "ClassPojo [coord = "+coord+", id = "+id+", sys = "+sys+", name = "+name+", population = "+population+", country = "+country+"]";
+    /**
+     * 
+     * @return
+     *     The population
+     */
+    public long getPopulation() {
+        return population;
     }
+
+    /**
+     * 
+     * @param population
+     *     The population
+     */
+    public void setPopulation(long population) {
+        this.population = population;
+    }
+
+    /**
+     * 
+     * @return
+     *     The sys
+     */
+    public Sys getSys() {
+        return sys;
+    }
+
+    /**
+     * 
+     * @param sys
+     *     The sys
+     */
+    public void setSys(Sys sys) {
+        this.sys = sys;
+    }
+
+
+
 }

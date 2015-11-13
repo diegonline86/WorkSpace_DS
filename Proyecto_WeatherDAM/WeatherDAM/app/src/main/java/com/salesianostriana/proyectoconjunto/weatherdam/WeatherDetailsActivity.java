@@ -12,8 +12,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.salesianostriana.proyectoconjunto.weatherdam.fragments.WeatherDetailFragment;
 import com.salesianostriana.proyectoconjunto.weatherdam.fragments.Weather5DaysFragment;
+import com.salesianostriana.proyectoconjunto.weatherdam.fragments.WeatherDetailFragment;
 
 public class WeatherDetailsActivity extends AppCompatActivity{
     private SectionsPagerAdapter mSectionsPagerAdapter;

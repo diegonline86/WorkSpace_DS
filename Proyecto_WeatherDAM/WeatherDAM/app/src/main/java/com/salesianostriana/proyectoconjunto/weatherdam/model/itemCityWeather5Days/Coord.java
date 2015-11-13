@@ -1,37 +1,69 @@
+
 package com.salesianostriana.proyectoconjunto.weatherdam.model.itemCityWeather5Days;
 
-/**
- * Created by das on 12/11/2015.
- */
-public class Coord
-{
-    private String lon;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    private String lat;
+public class Coord {
 
-    public String getLon ()
-    {
-        return lon;
+    @SerializedName("lon")
+    @Expose
+    private double lon;
+    @SerializedName("lat")
+    @Expose
+    private double lat;
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+    public Coord() {
     }
 
-    public void setLon (String lon)
-    {
+    /**
+     * 
+     * @param lon
+     * @param lat
+     */
+    public Coord(double lon, double lat) {
         this.lon = lon;
-    }
-
-    public String getLat ()
-    {
-        return lat;
-    }
-
-    public void setLat (String lat)
-    {
         this.lat = lat;
     }
 
-    @Override
-    public String toString()
-    {
-        return "ClassPojo [lon = "+lon+", lat = "+lat+"]";
+    /**
+     * 
+     * @return
+     *     The lon
+     */
+    public double getLon() {
+        return lon;
     }
+
+    /**
+     * 
+     * @param lon
+     *     The lon
+     */
+    public void setLon(double lon) {
+        this.lon = lon;
+    }
+
+    /**
+     * 
+     * @return
+     *     The lat
+     */
+    public double getLat() {
+        return lat;
+    }
+
+    /**
+     * 
+     * @param lat
+     *     The lat
+     */
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
 }

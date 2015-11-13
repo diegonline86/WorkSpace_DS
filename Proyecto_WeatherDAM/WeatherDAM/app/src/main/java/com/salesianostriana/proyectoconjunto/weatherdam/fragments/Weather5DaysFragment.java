@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import com.google.gson.Gson;
 import com.salesianostriana.proyectoconjunto.weatherdam.R;
 import com.salesianostriana.proyectoconjunto.weatherdam.adapter.CityWeather5DaysAdapter;
-import com.salesianostriana.proyectoconjunto.weatherdam.model.CityWeather5DaysCompact;
+import com.salesianostriana.proyectoconjunto.weatherdam.model.itemCityWeather5Days.ItemCityWeather5DaysCompact;
 import com.salesianostriana.proyectoconjunto.weatherdam.model.itemCityWeather5Days.ItemCityWeather5Days;
 
 import java.io.BufferedReader;
@@ -21,13 +21,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.GregorianCalendar;
-import java.util.HashSet;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -46,7 +46,7 @@ public class Weather5DaysFragment extends Fragment {
 
         Bundle extra = getActivity().getIntent().getExtras();
         id = extra.getString("weatherID");
-
+        Log.i("CIUDAD 5 DIAS", id);
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -74,7 +74,7 @@ public class Weather5DaysFragment extends Fragment {
 
             try {
                 //encajamos la variable en el parametro de ciudades
-                url = new URL("http://http://api.openweathermap.org/data/2.5/forecast?"+id+"=524901&appid=616440c75d43cf432ff5518ff8b6ee33");
+                url = new URL("http://api.openweathermap.org/data/2.5/forecast?id="+id+"&units=metric&appid=616440c75d43cf432ff5518ff8b6ee33");
                 br = new BufferedReader(new InputStreamReader(url.openStream()));
 
                 Gson gson = new Gson();
@@ -94,25 +94,30 @@ public class Weather5DaysFragment extends Fragment {
         @Override
         protected void onPostExecute(ItemCityWeather5Days itemCity5Days) {
             super.onPostExecute(itemCity5Days);
-            ;
-            ItemCityWeather5Days w5d = itemCity5Days;
-
-
-
-            recyclerView5Days.setAdapter(new CityWeather5DaysAdapter(itemCity5Days));
-
+            recyclerView5Days.setAdapter(new CityWeather5DaysAdapter(getCompactWeatherDataList(itemCity5Days)));
         }
 
-        private List<CityWeather5DaysCompact> compactWeatherData(ItemCityWeather5Days ic5d){
-            List<CityWeather5DaysCompact> list5Days = new ArrayList<>();
-            Set<String> dates = new HashSet<>();
-            List<String> maxTemps = new ArrayList<>();
-            List<String> minTemps = new ArrayList<>();
+        private List<ItemCityWeather5DaysCompact> getCompactWeatherDataList(ItemCityWeather5Days ic5d){
+            List<ItemCityWeather5DaysCompact> list5Days = new ArrayList<>();
+            Set<String> days = new LinkedHashSet<>(), days2 = new LinkedHashSet<>();
+            List<Double> listMaxTemps = new LinkedList<>();
+            List<Double> listMinTemps = new LinkedList<>();
+            int k = 0;
 
-            for(int i=0; i<ic5d.getList().length;i++){
-                dates.add(getDayOfWeek(ic5d.getList()[i].getDt_txt()));
-                maxTemps.add(ic5d.getList()[i].getMain().getTemp_max());
-                minTemps.add(ic5d.getList()[i].getMain().getTemp_min());
+            for(int i=0; i<ic5d.getList().size();i++){
+                String day = ic5d.getList().get(i).getDtTxt();
+                days.add(getDayOfWeek(day));
+                days2.add(day.substring(0,day.indexOf(' ')));
+            }
+
+            for(String d:days2){
+                listMaxTemps.add(getTemps(ic5d,d,1));
+                listMinTemps.add(getTemps(ic5d,d,2));
+            }
+
+            for(String d:days){
+                list5Days.add(new ItemCityWeather5DaysCompact(d,String.valueOf(listMaxTemps.get(k))+"º",String.valueOf(listMinTemps.get(k))+"º"));
+                k++;
             }
 
             return  list5Days;
@@ -123,53 +128,54 @@ public class Weather5DaysFragment extends Fragment {
             String day = "";
             String[] array_date = date.substring(0, date.indexOf(' ')).split("-");
 
-            cal.set(Calendar.DAY_OF_MONTH, Integer.valueOf(array_date[0]));
+            cal.set(Calendar.YEAR, Integer.valueOf(array_date[0]));
             cal.set(Calendar.MONTH, Integer.valueOf(array_date[1]) - 1);
-            cal.set(Calendar.YEAR, Integer.valueOf(array_date[2]));
+            cal.set(Calendar.DAY_OF_MONTH, Integer.valueOf(array_date[2]));
 
             switch (cal.get(Calendar.DAY_OF_WEEK)) {
                 case 1:
-                    day = "Sun";
+                    day = "SUN";
                     break;
                 case 2:
-                    day = "Mon";
+                    day = "MON";
                     break;
                 case 3:
-                    day = "Tue";
+                    day = "TUE";
                     break;
                 case 4:
-                    day = "Wed";
+                    day = "WED";
                     break;
                 case 5:
-                    day = "Thu";
+                    day = "THU";
                     break;
                 case 6:
-                    day = "Fri";
+                    day = "FRI";
                     break;
                 case 7:
-                    day = "Sat";
+                    day = "SAT";
                     break;
             }
             return day;
         }
 
-        public List<String> getTemps(List<String> temps,int mode){
-            List<String> res = new ArrayList<>();
-            List<String> aux = new ArrayList<>();
+        public double getTemps(ItemCityWeather5Days weather, String date,int mode){
+            List<Double> aux = new LinkedList<>();
+            double res;
 
-            int cont = 1;
-                for(String s:temps){
-                    if(cont==8 && mode==1){
-                        res.add(Collections.max(aux));
-                        aux.clear();
-                    }else if(cont==8 && mode==2){
-                        res.add(Collections.min(aux));
-                        aux.clear();
-                    }else{
-                        aux.add(s);
-                        cont++;
-                    }
+            for(com.salesianostriana.proyectoconjunto.weatherdam.model.itemCityWeather5Days.List w:weather.getList()){
+                if(w.getDtTxt().contains(date) && mode==1){
+                    aux.add(w.getMain().getTempMax());
+                }else if(w.getDtTxt().contains(date) && mode==2){
+                    aux.add(w.getMain().getTempMin());
                 }
+            }
+
+            if(mode==1){
+                res= Collections.max(aux);
+            }else{
+                res = Collections.min(aux);
+            }
+
             return res;
         }
     }

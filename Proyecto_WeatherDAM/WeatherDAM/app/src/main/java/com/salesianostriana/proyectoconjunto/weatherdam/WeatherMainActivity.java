@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-
 import android.support.v7.widget.SearchView;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -32,7 +31,6 @@ import java.util.List;
 
 public class WeatherMainActivity extends AppCompatActivity {
     private RecyclerView rv;
-    private SearchView.SearchAutoComplete mSearchView;
     private AutoCompleteTextView autoSearchText;
 
     @Override
@@ -187,9 +185,9 @@ public class WeatherMainActivity extends AppCompatActivity {
             final List<String> listCities = new ArrayList<>();
 
             if(itemCity != null) {
-                for (int i = 0; i < itemCity.getPredictions().length; i++) {
+                for (int i = 0; i < itemCity.getPredictions().size(); i++) {
                     //Voy agregando las ciudades del array de predicciones
-                    listCities.add(itemCity.getPredictions()[i].getDescription());
+                    listCities.add(itemCity.getPredictions().get(i).getDescription());
                 }
             }
 

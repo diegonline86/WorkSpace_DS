@@ -1,36 +1,71 @@
+
 package com.salesianostriana.proyectoconjunto.weatherdam.model.itemCityWeather;
 
-/**
- * Created by Diego on 11/11/2015.
- */
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Wind {
-    private String speed;
 
-    private String deg;
+    @SerializedName("speed")
+    @Expose
+    private double speed;
+    @SerializedName("deg")
+    @Expose
+    private double deg;
 
-    public String getSpeed ()
-    {
-        return speed;
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+    public Wind() {
     }
 
-    public void setSpeed (String speed)
-    {
+    /**
+     * 
+     * @param speed
+     * @param deg
+     */
+    public Wind(double speed, double deg) {
         this.speed = speed;
-    }
-
-    public String getDeg ()
-    {
-        return deg;
-    }
-
-    public void setDeg (String deg)
-    {
         this.deg = deg;
     }
 
-    @Override
-    public String toString()
-    {
-        return "ClassPojo [speed = "+speed+", deg = "+deg+"]";
+    /**
+     * 
+     * @return
+     *     The speed
+     */
+    public double getSpeed() {
+        return speed;
     }
+
+    /**
+     * 
+     * @param speed
+     *     The speed
+     */
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
+
+    /**
+     * 
+     * @return
+     *     The deg
+     */
+    public double getDeg() {
+        return deg;
+    }
+
+    /**
+     * 
+     * @param deg
+     *     The deg
+     */
+    public void setDeg(double deg) {
+        this.deg = deg;
+    }
+
+
+
 }

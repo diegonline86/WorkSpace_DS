@@ -1,61 +1,115 @@
+
 package com.salesianostriana.proyectoconjunto.weatherdam.model.itemCityWeather5Days;
 
-/**
- * Created by das on 12/11/2015.
- */
-public class Weather
-{
-    private String id;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
+public class Weather {
+
+    @SerializedName("id")
+    @Expose
+    private long id;
+    @SerializedName("main")
+    @Expose
+    private String main;
+    @SerializedName("description")
+    @Expose
+    private String description;
+    @SerializedName("icon")
+    @Expose
     private String icon;
 
-    private String description;
-
-    private String main;
-
-    public String getId ()
-    {
-        return id;
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+    public Weather() {
     }
 
-    public void setId (String id)
-    {
+    /**
+     * 
+     * @param id
+     * @param icon
+     * @param description
+     * @param main
+     */
+    public Weather(long id, String main, String description, String icon) {
         this.id = id;
-    }
-
-    public String getIcon ()
-    {
-        return icon;
-    }
-
-    public void setIcon (String icon)
-    {
+        this.main = main;
+        this.description = description;
         this.icon = icon;
     }
 
-    public String getDescription ()
-    {
-        return description;
+    /**
+     * 
+     * @return
+     *     The id
+     */
+    public long getId() {
+        return id;
     }
 
-    public void setDescription (String description)
-    {
-        this.description = description;
+    /**
+     * 
+     * @param id
+     *     The id
+     */
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public String getMain ()
-    {
+    /**
+     * 
+     * @return
+     *     The main
+     */
+    public String getMain() {
         return main;
     }
 
-    public void setMain (String main)
-    {
+    /**
+     * 
+     * @param main
+     *     The main
+     */
+    public void setMain(String main) {
         this.main = main;
     }
 
-    @Override
-    public String toString()
-    {
-        return "ClassPojo [id = "+id+", icon = "+icon+", description = "+description+", main = "+main+"]";
+    /**
+     * 
+     * @return
+     *     The description
+     */
+    public String getDescription() {
+        return description;
     }
+
+    /**
+     * 
+     * @param description
+     *     The description
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * 
+     * @return
+     *     The icon
+     */
+    public String getIcon() {
+        return icon;
+    }
+
+    /**
+     * 
+     * @param icon
+     *     The icon
+     */
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
 }

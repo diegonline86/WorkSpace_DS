@@ -1,109 +1,208 @@
+
 package com.salesianostriana.proyectoconjunto.weatherdam.model.itemCityWeather5Days;
 
-/**
- * Created by das on 12/11/2015.
- */
-public class Main
-{
-    private String temp_kf;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    private String humidity;
 
-    private String pressure;
+public class Main {
 
-    private String temp_max;
+    @SerializedName("temp")
+    @Expose
+    private double temp;
+    @SerializedName("temp_min")
+    @Expose
+    private double tempMin;
+    @SerializedName("temp_max")
+    @Expose
+    private double tempMax;
+    @SerializedName("pressure")
+    @Expose
+    private double pressure;
+    @SerializedName("sea_level")
+    @Expose
+    private double seaLevel;
+    @SerializedName("grnd_level")
+    @Expose
+    private double grndLevel;
+    @SerializedName("humidity")
+    @Expose
+    private long humidity;
+    @SerializedName("temp_kf")
+    @Expose
+    private double tempKf;
 
-    private String sea_level;
-
-    private String temp_min;
-
-    private String temp;
-
-    private String grnd_level;
-
-    public String getTemp_kf ()
-    {
-        return temp_kf;
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+    public Main() {
     }
 
-    public void setTemp_kf (String temp_kf)
-    {
-        this.temp_kf = temp_kf;
-    }
-
-    public String getHumidity ()
-    {
-        return humidity;
-    }
-
-    public void setHumidity (String humidity)
-    {
-        this.humidity = humidity;
-    }
-
-    public String getPressure ()
-    {
-        return pressure;
-    }
-
-    public void setPressure (String pressure)
-    {
+    /**
+     * 
+     * @param seaLevel
+     * @param humidity
+     * @param pressure
+     * @param grndLevel
+     * @param tempMax
+     * @param temp
+     * @param tempKf
+     * @param tempMin
+     */
+    public Main(double temp, double tempMin, double tempMax, double pressure, double seaLevel, double grndLevel, long humidity, double tempKf) {
+        this.temp = temp;
+        this.tempMin = tempMin;
+        this.tempMax = tempMax;
         this.pressure = pressure;
+        this.seaLevel = seaLevel;
+        this.grndLevel = grndLevel;
+        this.humidity = humidity;
+        this.tempKf = tempKf;
     }
 
-    public String getTemp_max ()
-    {
-        return temp_max;
-    }
-
-    public void setTemp_max (String temp_max)
-    {
-        this.temp_max = temp_max;
-    }
-
-    public String getSea_level ()
-    {
-        return sea_level;
-    }
-
-    public void setSea_level (String sea_level)
-    {
-        this.sea_level = sea_level;
-    }
-
-    public String getTemp_min ()
-    {
-        return temp_min;
-    }
-
-    public void setTemp_min (String temp_min)
-    {
-        this.temp_min = temp_min;
-    }
-
-    public String getTemp ()
-    {
+    /**
+     * 
+     * @return
+     *     The temp
+     */
+    public double getTemp() {
         return temp;
     }
 
-    public void setTemp (String temp)
-    {
+    /**
+     * 
+     * @param temp
+     *     The temp
+     */
+    public void setTemp(double temp) {
         this.temp = temp;
     }
 
-    public String getGrnd_level ()
-    {
-        return grnd_level;
+    /**
+     * 
+     * @return
+     *     The tempMin
+     */
+    public double getTempMin() {
+        return tempMin;
     }
 
-    public void setGrnd_level (String grnd_level)
-    {
-        this.grnd_level = grnd_level;
+    /**
+     * 
+     * @param tempMin
+     *     The temp_min
+     */
+    public void setTempMin(double tempMin) {
+        this.tempMin = tempMin;
     }
 
-    @Override
-    public String toString()
-    {
-        return "ClassPojo [temp_kf = "+temp_kf+", humidity = "+humidity+", pressure = "+pressure+", temp_max = "+temp_max+", sea_level = "+sea_level+", temp_min = "+temp_min+", temp = "+temp+", grnd_level = "+grnd_level+"]";
+    /**
+     * 
+     * @return
+     *     The tempMax
+     */
+    public double getTempMax() {
+        return tempMax;
     }
+
+    /**
+     * 
+     * @param tempMax
+     *     The temp_max
+     */
+    public void setTempMax(double tempMax) {
+        this.tempMax = tempMax;
+    }
+
+    /**
+     * 
+     * @return
+     *     The pressure
+     */
+    public double getPressure() {
+        return pressure;
+    }
+
+    /**
+     * 
+     * @param pressure
+     *     The pressure
+     */
+    public void setPressure(double pressure) {
+        this.pressure = pressure;
+    }
+
+    /**
+     * 
+     * @return
+     *     The seaLevel
+     */
+    public double getSeaLevel() {
+        return seaLevel;
+    }
+
+    /**
+     * 
+     * @param seaLevel
+     *     The sea_level
+     */
+    public void setSeaLevel(double seaLevel) {
+        this.seaLevel = seaLevel;
+    }
+
+    /**
+     * 
+     * @return
+     *     The grndLevel
+     */
+    public double getGrndLevel() {
+        return grndLevel;
+    }
+
+    /**
+     * 
+     * @param grndLevel
+     *     The grnd_level
+     */
+    public void setGrndLevel(double grndLevel) {
+        this.grndLevel = grndLevel;
+    }
+
+    /**
+     * 
+     * @return
+     *     The humidity
+     */
+    public long getHumidity() {
+        return humidity;
+    }
+
+    /**
+     * 
+     * @param humidity
+     *     The humidity
+     */
+    public void setHumidity(long humidity) {
+        this.humidity = humidity;
+    }
+
+    /**
+     * 
+     * @return
+     *     The tempKf
+     */
+    public double getTempKf() {
+        return tempKf;
+    }
+
+    /**
+     * 
+     * @param tempKf
+     *     The temp_kf
+     */
+    public void setTempKf(double tempKf) {
+        this.tempKf = tempKf;
+    }
+
 }

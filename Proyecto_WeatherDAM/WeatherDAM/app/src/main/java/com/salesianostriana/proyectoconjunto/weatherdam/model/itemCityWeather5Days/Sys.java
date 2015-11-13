@@ -1,24 +1,49 @@
+
 package com.salesianostriana.proyectoconjunto.weatherdam.model.itemCityWeather5Days;
 
-/**
- * Created by das on 12/11/2015.
- */
-public class Sys{
-    private String pod;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    public String getPod ()
-    {
-        return pod;
+
+public class Sys {
+
+    @SerializedName("population")
+    @Expose
+    private long population;
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+    public Sys() {
     }
 
-    public void setPod (String pod)
-    {
-        this.pod = pod;
+    /**
+     * 
+     * @param population
+     */
+    public Sys(long population) {
+        this.population = population;
     }
 
-    @Override
-    public String toString()
-    {
-        return "ClassPojo [pod = "+pod+"]";
+    /**
+     * 
+     * @return
+     *     The population
+     */
+    public long getPopulation() {
+        return population;
     }
+
+    /**
+     * 
+     * @param population
+     *     The population
+     */
+    public void setPopulation(long population) {
+        this.population = population;
+    }
+
+
+
 }
