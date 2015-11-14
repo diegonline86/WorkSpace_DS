@@ -1,5 +1,6 @@
 package com.salesianostriana.proyectoconjunto.weatherdam.adapter;
 
+import android.content.SharedPreferences;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,6 +59,7 @@ public class CityWeather5DaysAdapter extends RecyclerView.Adapter<CityWeather5Da
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
+
         ItemCityWeather5DaysCompact itemActual = mDataset.get(position);
         holder.textViewDay5Days.setText(itemActual.getDay());
         holder.textViewMaxTemp5Days.setText(itemActual.getMaxTemp());
