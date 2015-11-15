@@ -16,6 +16,8 @@ import com.salesianostriana.proyectoconjunto.weatherdam.R;
 import com.salesianostriana.proyectoconjunto.weatherdam.WeatherDetailsActivity;
 import com.salesianostriana.proyectoconjunto.weatherdam.model.itemCityWeather.ItemCityWeather;
 import com.salesianostriana.proyectoconjunto.weatherdam.model.itemCityWeather.Weather;
+import com.salesianostriana.proyectoconjunto.weatherdam.utils.ImageUtils;
+import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 
@@ -27,6 +29,7 @@ public class CityWheaterAdapter extends RecyclerView.Adapter<CityWheaterAdapter.
     private boolean bookmark;
     private static SharedPreferences prefs;
     private static SharedPreferences.Editor editor;
+    private View v;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -71,7 +74,7 @@ public class CityWheaterAdapter extends RecyclerView.Adapter<CityWheaterAdapter.
     @Override
     public CityWheaterAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
-        View v = LayoutInflater.from(parent.getContext())
+        v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_item_city_weather, parent, false);
 
         // set the view's size, margins, paddings and layout parameters
@@ -95,6 +98,8 @@ public class CityWheaterAdapter extends RecyclerView.Adapter<CityWheaterAdapter.
         holder.textViewCityWeatherLocation.setText(cityWeather.getName());
         holder.textViewCityWeatherTemp.setText(String.valueOf(cityWeather.getMain().getTemp())+"º");
         holder.id = String.valueOf(cityWeather.getId());
+        ImageUtils.setViewImage(holder.imgViewCityWeatherState,500,500,weather.getIcon());
+
 
         if(bookmark){
             holder.imgBtnBookmark.setImageResource(android.R.drawable.star_big_on);
