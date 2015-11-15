@@ -66,7 +66,6 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/imgBtnBookMark"
                 android:layout_marginEnd="16dp"
-                android:src="@android:drawable/btn_star_big_off"
                 android:layout_below="@+id/textViewTemp"
                 android:layout_alignParentEnd="true"
                 android:background="@android:color/transparent" />

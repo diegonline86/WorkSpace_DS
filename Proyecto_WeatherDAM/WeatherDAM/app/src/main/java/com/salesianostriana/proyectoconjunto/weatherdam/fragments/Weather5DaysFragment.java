@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +12,8 @@ import android.view.ViewGroup;
 import com.google.gson.Gson;
 import com.salesianostriana.proyectoconjunto.weatherdam.R;
 import com.salesianostriana.proyectoconjunto.weatherdam.adapter.CityWeather5DaysAdapter;
-import com.salesianostriana.proyectoconjunto.weatherdam.model.itemCityWeather5Days.ItemCityWeather5DaysCompact;
 import com.salesianostriana.proyectoconjunto.weatherdam.model.itemCityWeather5Days.ItemCityWeather5Days;
+import com.salesianostriana.proyectoconjunto.weatherdam.model.itemCityWeather5Days.ItemCityWeather5DaysCompact;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,8 +23,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -46,7 +43,6 @@ public class Weather5DaysFragment extends Fragment {
 
         Bundle extra = getActivity().getIntent().getExtras();
         id = extra.getString("weatherID");
-        Log.i("CIUDAD 5 DIAS", id);
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

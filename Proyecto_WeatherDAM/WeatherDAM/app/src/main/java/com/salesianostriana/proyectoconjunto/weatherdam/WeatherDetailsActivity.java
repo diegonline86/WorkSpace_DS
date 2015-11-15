@@ -12,7 +12,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+
 import com.salesianostriana.proyectoconjunto.weatherdam.fragments.Weather5DaysFragment;
+import com.salesianostriana.proyectoconjunto.weatherdam.fragments.Weather5DaysHourFragment;
 import com.salesianostriana.proyectoconjunto.weatherdam.fragments.WeatherDetailFragment;
 
 public class WeatherDetailsActivity extends AppCompatActivity{
@@ -28,6 +30,7 @@ public class WeatherDetailsActivity extends AppCompatActivity{
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xff2196f3));
+
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -85,6 +88,8 @@ public class WeatherDetailsActivity extends AppCompatActivity{
                 return new WeatherDetailFragment();
             } else if(position==1) {
                 return new Weather5DaysFragment();
+            } else if(position==2){
+                return new Weather5DaysHourFragment();
             }
 
             return null;
@@ -92,8 +97,8 @@ public class WeatherDetailsActivity extends AppCompatActivity{
 
         @Override
         public int getCount() {
-            // Show 2 total pages.
-            return 2;
+            // Show 3 total pages.
+            return 3;
         }
 
         @Override
@@ -103,6 +108,8 @@ public class WeatherDetailsActivity extends AppCompatActivity{
                     return "Detail";
                 case 1:
                     return "5 Days";
+                case 2:
+                    return "Hours";
             }
             return null;
         }

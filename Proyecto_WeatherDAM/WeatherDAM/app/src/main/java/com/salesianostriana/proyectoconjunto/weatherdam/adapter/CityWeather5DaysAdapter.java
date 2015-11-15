@@ -1,6 +1,6 @@
 package com.salesianostriana.proyectoconjunto.weatherdam.adapter;
 
-import android.content.SharedPreferences;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +19,7 @@ import java.util.List;
  */
 public class CityWeather5DaysAdapter extends RecyclerView.Adapter<CityWeather5DaysAdapter.ViewHolder>{
     private List<ItemCityWeather5DaysCompact> mDataset;
+    private View v;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -48,7 +49,7 @@ public class CityWeather5DaysAdapter extends RecyclerView.Adapter<CityWeather5Da
     @Override
     public CityWeather5DaysAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_weather_5days, parent, false);
+        v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_weather_5days, parent, false);
         // set the view's size, margins, paddings and layout parameters
         ViewHolder vh = new ViewHolder(v);
         return vh;
@@ -59,6 +60,10 @@ public class CityWeather5DaysAdapter extends RecyclerView.Adapter<CityWeather5Da
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
+
+        if(position%2==0){
+            v.setBackground(new ColorDrawable(0X262196f3));
+        }
 
         ItemCityWeather5DaysCompact itemActual = mDataset.get(position);
         holder.textViewDay5Days.setText(itemActual.getDay());

@@ -4,8 +4,6 @@ package com.salesianostriana.proyectoconjunto.weatherdam.model.itemCityWeather5D
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-
-
 import java.util.ArrayList;
 
 

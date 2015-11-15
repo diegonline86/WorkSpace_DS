@@ -31,8 +31,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Set;
-import java.util.concurrent.ExecutionException;
 
 public class WeatherMainActivity extends AppCompatActivity {
     private RecyclerView rv;
@@ -49,8 +47,8 @@ public class WeatherMainActivity extends AppCompatActivity {
         mapWeatherCities = new LinkedHashMap<>();
         prefs = getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
         editor = prefs.edit();
-        editor.clear();
-        editor.commit();
+        //editor.clear();
+        //editor.commit();
 
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xff2196f3));
 
@@ -60,20 +58,13 @@ public class WeatherMainActivity extends AppCompatActivity {
         LinearLayoutManager llm = new LinearLayoutManager(this);
         rv.setLayoutManager(llm);
 
-        Set<String> prefCities = prefs.getAll().keySet();
-
         //Nos fijamos si hay ciudades guardadas en preferencias
-        if(!prefCities.isEmpty()) {
-            for (String c : prefCities) {
-                try {
-                    mapWeatherCities.put(new GetItemCityWeather(c).get(), true);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                }
+        if(!prefs.getAll().isEmpty()) {
+            for (String c : prefs.getAll().keySet()) {
+                new GetItemCityWeather(c,true).execute();
             }
         }
+
 
     }
 
@@ -85,7 +76,7 @@ public class WeatherMainActivity extends AppCompatActivity {
         MenuItem searchItem = menu.findItem(R.id.action_search);
         autoSearchText = (AutoCompleteTextView) searchItem.getActionView();
         autoSearchText.setHint("Search city");
-        autoSearchText.setWidth(600);
+        autoSearchText.setWidth(1000);
 
         autoSearchText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -117,16 +108,26 @@ public class WeatherMainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_configuration) {
             return true;
+        }else if(id == R.id.action_refresh){
+            //lo que hacemos para refrescar es recrear el activity
+            this.recreate();
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
     private class GetItemCityWeather extends AsyncTask<Void,Void,ItemCityWeather>{
-        String city;
+        String city ;
+        boolean bookmark;
 
         public GetItemCityWeather(String _city){
             city = _city;
+        }
+
+        public GetItemCityWeather(String _city, boolean bookmark){
+            city = _city;
+            this.bookmark = bookmark;
         }
 
         @Override
@@ -138,7 +139,7 @@ public class WeatherMainActivity extends AppCompatActivity {
 
             try {
                 //quitamos los espacios para adaptarlo al formato url
-                city.replace(" ","");
+                city.replace(" ", "");
                 //encajamos la variable en el parametro de ciudades
                 url = new URL("http://api.openweathermap.org/data/2.5/weather?q="+city+"&units=metric&appid=616440c75d43cf432ff5518ff8b6ee33");
                 br = new BufferedReader(new InputStreamReader(url.openStream()));
@@ -160,10 +161,13 @@ public class WeatherMainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(ItemCityWeather itemCityWeather) {
             super.onPostExecute(itemCityWeather);
-            if(!mapWeatherCities.keySet().contains(itemCityWeather)) {
+            if(bookmark) {
+                mapWeatherCities.put(itemCityWeather, true);
+            }else{
                 mapWeatherCities.put(itemCityWeather, false);
-                rv.setAdapter(new CityWheaterAdapter(mapWeatherCities));
             }
+
+            rv.setAdapter(new CityWheaterAdapter(mapWeatherCities));
         }
     }
 
@@ -175,6 +179,7 @@ public class WeatherMainActivity extends AppCompatActivity {
             city = _city.toString();
         }
 
+
         @Override
         protected ItemCity doInBackground(Void... params) {
             URL url = null;
@@ -184,7 +189,7 @@ public class WeatherMainActivity extends AppCompatActivity {
 
             try {
                 //encajamos la variable en el parametro de ciudades
-                url = new URL("https://maps.googleapis.com/maps/api/place/autocomplete/json?input="+city+"&types=%28cities%29&language=es_ES&key=AIzaSyAKlKgw0xcUOGqWvSo2qOn_zdjXgY8xi3M");
+                url = new URL("https://maps.googleapis.com/maps/api/place/autocomplete/json?input="+city+"&types=%28cities%29&key=AIzaSyAKlKgw0xcUOGqWvSo2qOn_zdjXgY8xi3M");
                 br = new BufferedReader(new InputStreamReader(url.openStream()));
 
                 Gson gson = new Gson();
@@ -226,7 +231,7 @@ public class WeatherMainActivity extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     //Ejecuto la busqueda de la ciudad seleccionada
-                    new GetItemCityWeather(listCities.get(position).replace(" ","")).execute();
+                    new GetItemCityWeather(listCities.get(position).replace(" ",""),false).execute();
                 }
             });
         }
