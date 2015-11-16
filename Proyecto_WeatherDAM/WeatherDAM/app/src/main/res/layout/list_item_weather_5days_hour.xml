@@ -36,7 +36,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="pressure"
+        android:text="humidity"
         android:id="@+id/textView5DaysRainTitle"
         android:layout_marginStart="28dp"
         android:layout_alignTop="@+id/textView5DaysCondTitle"

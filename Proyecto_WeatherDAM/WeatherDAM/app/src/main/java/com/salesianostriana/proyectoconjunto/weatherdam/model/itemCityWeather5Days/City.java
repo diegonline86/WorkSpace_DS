@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class City {
 
-    @SerializedName("id")
+    @SerializedName("city")
     @Expose
     private long id;
     @SerializedName("name")
@@ -53,7 +53,7 @@ public class City {
     /**
      * 
      * @return
-     *     The id
+     *     The city
      */
     public long getId() {
         return id;
@@ -62,7 +62,7 @@ public class City {
     /**
      * 
      * @param id
-     *     The id
+     *     The city
      */
     public void setId(long id) {
         this.id = id;

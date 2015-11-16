@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.salesianostriana.proyectoconjunto.weatherdam.R;
 import com.salesianostriana.proyectoconjunto.weatherdam.model.itemCityWeather5Days.ItemCityWeather5DaysCompact;
+import com.salesianostriana.proyectoconjunto.weatherdam.utils.ImageUtils;
 
 import java.util.List;
 
@@ -69,7 +70,7 @@ public class CityWeather5DaysAdapter extends RecyclerView.Adapter<CityWeather5Da
         holder.textViewDay5Days.setText(itemActual.getDay());
         holder.textViewMaxTemp5Days.setText(itemActual.getMaxTemp());
         holder.textViewMinTemp5Days.setText(itemActual.getMinTemp());
-
+        ImageUtils.setViewImage(holder.imgView5Days,500,500,itemActual.getIcon());
     }
 
     // Return the size of your dataset (invoked by the layout manager)

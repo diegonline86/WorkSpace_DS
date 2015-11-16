@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.salesianostriana.proyectoconjunto.weatherdam.R;
 import com.salesianostriana.proyectoconjunto.weatherdam.model.itemCityWeather.ItemCityWeather;
+import com.salesianostriana.proyectoconjunto.weatherdam.utils.ImageUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,7 +25,7 @@ public class WeatherDetailFragment extends Fragment{
     ImageView imageViewIconWeather;
     TextView textViewLocation,textViewTemp, textViewTempMax,
             textViewTempMin,textViewWind, textViewHumidity, textViewPressure ;
-    String id;
+    String city;
 
     public WeatherDetailFragment() {
         // Required empty public constructor
@@ -33,10 +34,14 @@ public class WeatherDetailFragment extends Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Obtenemos el id del intent y el extra del activity contenedor
+        //Obtenemos el city del intent y el extra del activity contenedor
         Bundle extra = getActivity().getIntent().getExtras();
-        id = extra.getString("weatherID");
+        city = extra.getString("city");
 
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            city = bundle.getString("city");
+        }
     }
 
 
@@ -71,7 +76,7 @@ public class WeatherDetailFragment extends Fragment{
 
             try {
                 //encajamos la variable en el parametro de ciudades
-                url = new URL("http://api.openweathermap.org/data/2.5/weather?id="+id+"&units=metric&appid=616440c75d43cf432ff5518ff8b6ee33");
+                url = new URL("http://api.openweathermap.org/data/2.5/weather?q="+city+"&units=metric&appid=616440c75d43cf432ff5518ff8b6ee33");
                 br = new BufferedReader(new InputStreamReader(url.openStream()));
 
                 Gson gson = new Gson();
@@ -100,6 +105,7 @@ public class WeatherDetailFragment extends Fragment{
             textViewWind.setText(String.valueOf(weather.getWind().getSpeed())+"KMH");
             textViewHumidity.setText(String.valueOf(weather.getMain().getHumidity())+"%");
             textViewPressure.setText(String.valueOf(weather.getMain().getPressure())+"MB");
+            ImageUtils.setViewImage(imageViewIconWeather,500,500,itemCityWeather.getWeather().get(0).getIcon());
         }
     }
 }

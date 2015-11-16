@@ -47,8 +47,6 @@ public class WeatherMainActivity extends AppCompatActivity {
         mapWeatherCities = new LinkedHashMap<>();
         prefs = getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
         editor = prefs.edit();
-        //editor.clear();
-        //editor.commit();
 
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xff2196f3));
 
@@ -60,6 +58,7 @@ public class WeatherMainActivity extends AppCompatActivity {
 
         //Nos fijamos si hay ciudades guardadas en preferencias
         if(!prefs.getAll().isEmpty()) {
+            //En caso afirmativo lo mostramos por pantalla
             for (String c : prefs.getAll().keySet()) {
                 new GetItemCityWeather(c,true).execute();
             }

@@ -23,15 +23,18 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 
 public class Weather5DaysFragment extends Fragment {
     RecyclerView recyclerView5Days;
-    String id;
+    String city;
 
     public Weather5DaysFragment() {
         // Required empty public constructor
@@ -42,7 +45,8 @@ public class Weather5DaysFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         Bundle extra = getActivity().getIntent().getExtras();
-        id = extra.getString("weatherID");
+        city = extra.getString("city");
+
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -69,8 +73,8 @@ public class Weather5DaysFragment extends Fragment {
 
 
             try {
-                //encajamos la variable en el parametro de ciudades
-                url = new URL("http://api.openweathermap.org/data/2.5/forecast?id="+id+"&units=metric&appid=616440c75d43cf432ff5518ff8b6ee33");
+                //encajamos la variable en el parametro URL de ciudades
+                url = new URL("http://api.openweathermap.org/data/2.5/forecast?q="+city+"&units=metric&appid=616440c75d43cf432ff5518ff8b6ee33");
                 br = new BufferedReader(new InputStreamReader(url.openStream()));
 
                 Gson gson = new Gson();
@@ -93,17 +97,21 @@ public class Weather5DaysFragment extends Fragment {
             recyclerView5Days.setAdapter(new CityWeather5DaysAdapter(getCompactWeatherDataList(itemCity5Days)));
         }
 
+        //En este método comprimimos la informacion necesaria para mostrar en el
+        //pronostico de 5 días simplicado
         private List<ItemCityWeather5DaysCompact> getCompactWeatherDataList(ItemCityWeather5Days ic5d){
             List<ItemCityWeather5DaysCompact> list5Days = new ArrayList<>();
             Set<String> days = new LinkedHashSet<>(), days2 = new LinkedHashSet<>();
             List<Double> listMaxTemps = new LinkedList<>();
             List<Double> listMinTemps = new LinkedList<>();
+            List<String> listIcons = new ArrayList<>();
             int k = 0;
 
             for(int i=0; i<ic5d.getList().size();i++){
                 String day = ic5d.getList().get(i).getDtTxt();
                 days.add(getDayOfWeek(day));
-                days2.add(day.substring(0,day.indexOf(' ')));
+                days2.add(day.substring(0, day.indexOf(' ')));
+                listIcons.add(getMaxIcon(ic5d,day));
             }
 
             for(String d:days2){
@@ -112,13 +120,15 @@ public class Weather5DaysFragment extends Fragment {
             }
 
             for(String d:days){
-                list5Days.add(new ItemCityWeather5DaysCompact(d,String.valueOf(listMaxTemps.get(k))+"º",String.valueOf(listMinTemps.get(k))+"º"));
+                list5Days.add(new ItemCityWeather5DaysCompact(d,String.valueOf(listMaxTemps.get(k))+"º",String.valueOf(listMinTemps.get(k))+"º",listIcons.get(k)));
                 k++;
             }
 
             return  list5Days;
         }
 
+        //En este método obtenemos el formato cadena del dia de la fecha
+        //a mostrar en el pronostico diario
         private String getDayOfWeek(String date) {
             Calendar cal = Calendar.getInstance();
             String day = "";
@@ -154,6 +164,8 @@ public class Weather5DaysFragment extends Fragment {
             return day;
         }
 
+        //En este método filramos las temperaturas por una fecha dada por parametro
+        //y devolvemos el valor maximo o minimo segun el modo elegido, 1 maximo y 2 minimo
         public double getTemps(ItemCityWeather5Days weather, String date,int mode){
             List<Double> aux = new LinkedList<>();
             double res;
@@ -174,7 +186,50 @@ public class Weather5DaysFragment extends Fragment {
 
             return res;
         }
+
+        public String getMaxIcon(ItemCityWeather5Days ic5D, String date){
+            Map<String,Integer> valuesCont = new LinkedHashMap<>();
+            Set<String> setIcons = new LinkedHashSet<>();
+            List<String> listIcon= new ArrayList<>();
+            int cont = 0;
+
+            for (com.salesianostriana.proyectoconjunto.weatherdam.model.itemCityWeather5Days.List  w: ic5D.getList()) {
+                //Almacenamos los iconos de una fecha determinada en parametro
+                //y en dentro del horario de dia
+                if (w.getDtTxt().equals(date)) {
+                    listIcon.add(w.getWeather().get(0).getIcon());
+                }
+            }
+            //Filtramos los elementos repetidos
+            setIcons.addAll(listIcon);
+
+            //Contamos la concurrencias de cada icono de la lista
+            //con los elementos no repetidos
+            for (String icon : setIcons) {
+                for (String iconFind : listIcon) {
+                    if (icon.equals(iconFind)) {
+                        cont++;
+                        valuesCont.put(icon, cont);
+                    }
+                }
+                //reseteamos el contador para la proxima busqueda
+                cont = 0;
+            }
+
+            //Nos quedamos con el valor maximo del contador
+            cont = Collections.max(valuesCont.values());
+
+            //Buscamos en el hashMap la llave asociada al valor maximo
+            for (Map.Entry<String, Integer>  entry: valuesCont.entrySet()) {
+                if(Objects.equals(cont,entry.getValue())){
+                    return entry.getKey();
+                }
+            }
+
+            return "";
+        }
     }
-
-
 }
+
+
+

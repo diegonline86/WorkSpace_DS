@@ -17,7 +17,6 @@ import com.salesianostriana.proyectoconjunto.weatherdam.WeatherDetailsActivity;
 import com.salesianostriana.proyectoconjunto.weatherdam.model.itemCityWeather.ItemCityWeather;
 import com.salesianostriana.proyectoconjunto.weatherdam.model.itemCityWeather.Weather;
 import com.salesianostriana.proyectoconjunto.weatherdam.utils.ImageUtils;
-import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 
@@ -41,7 +40,7 @@ public class CityWheaterAdapter extends RecyclerView.Adapter<CityWheaterAdapter.
         public TextView textViewCityWeatherTemp;
         public ImageView imgViewCityWeatherState;
         public ImageButton imgBtnBookmark;
-        public String id;
+        public String city;
 
         public ViewHolder(View v) {
             super(v);
@@ -57,7 +56,7 @@ public class CityWheaterAdapter extends RecyclerView.Adapter<CityWheaterAdapter.
                 @Override
                 public void onClick(View v) {
                     Intent i = new Intent(v.getContext(), WeatherDetailsActivity.class);
-                    i.putExtra("weatherID",id);
+                    i.putExtra("city", city);
                     v.getContext().startActivity(i);
                 }
             });
@@ -97,7 +96,7 @@ public class CityWheaterAdapter extends RecyclerView.Adapter<CityWheaterAdapter.
         holder.textViewCityWeatherState.setText(weather.getDescription());
         holder.textViewCityWeatherLocation.setText(cityWeather.getName());
         holder.textViewCityWeatherTemp.setText(String.valueOf(cityWeather.getMain().getTemp())+"º");
-        holder.id = String.valueOf(cityWeather.getId());
+        holder.city = cityWeather.getName();
         ImageUtils.setViewImage(holder.imgViewCityWeatherState,500,500,weather.getIcon());
 
 

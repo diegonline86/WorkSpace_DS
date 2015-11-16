@@ -33,7 +33,7 @@ public class ItemCityWeather {
     @SerializedName("sys")
     @Expose
     private Sys sys;
-    @SerializedName("id")
+    @SerializedName("city")
     @Expose
     private long id;
     @SerializedName("name")
@@ -225,7 +225,7 @@ public class ItemCityWeather {
     /**
      * 
      * @return
-     *     The id
+     *     The city
      */
     public long getId() {
         return id;
@@ -234,7 +234,7 @@ public class ItemCityWeather {
     /**
      * 
      * @param id
-     *     The id
+     *     The city
      */
     public void setId(long id) {
         this.id = id;

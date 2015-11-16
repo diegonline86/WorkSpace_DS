@@ -1,6 +1,7 @@
 package com.salesianostriana.proyectoconjunto.weatherdam;
 
 import android.graphics.drawable.ColorDrawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -9,18 +10,38 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Toast;
 
 
+import com.google.gson.Gson;
+import com.salesianostriana.proyectoconjunto.weatherdam.adapter.CityWheaterAdapter;
 import com.salesianostriana.proyectoconjunto.weatherdam.fragments.Weather5DaysFragment;
 import com.salesianostriana.proyectoconjunto.weatherdam.fragments.Weather5DaysHourFragment;
 import com.salesianostriana.proyectoconjunto.weatherdam.fragments.WeatherDetailFragment;
+import com.salesianostriana.proyectoconjunto.weatherdam.model.itemCity.ItemCity;
+import com.salesianostriana.proyectoconjunto.weatherdam.model.itemCityWeather.ItemCityWeather;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 public class WeatherDetailsActivity extends AppCompatActivity{
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
-
+    private AutoCompleteTextView autoSearchText;
+    private Fragment fragmentDetail,fragment5Days,fragment5DaysHour;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +50,10 @@ public class WeatherDetailsActivity extends AppCompatActivity{
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xff2196f3));
 
+        //Personalizo los colores de la barra de acción y de estado
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xff2196f3));
+        getWindow().setStatusBarColor(0xff1565c0);
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -51,6 +74,32 @@ public class WeatherDetailsActivity extends AppCompatActivity{
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_opciones, menu);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        autoSearchText = (AutoCompleteTextView) searchItem.getActionView();
+        autoSearchText.setHint("Search city");
+        autoSearchText.setWidth(1000);
+
+        fragmentDetail = new WeatherDetailFragment();
+        fragment5Days = new Weather5DaysFragment();
+        fragment5DaysHour = new Weather5DaysHourFragment();
+
+        autoSearchText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                new GetItemCity(s.toString().replace(" ", "")).execute();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
         return true;
     }
 
@@ -63,6 +112,10 @@ public class WeatherDetailsActivity extends AppCompatActivity{
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_configuration) {
+            return true;
+        }else if(id == R.id.action_refresh){
+            //lo que hacemos para refrescar es recrear el activity
+            this.recreate();
             return true;
         }
 
@@ -89,7 +142,7 @@ public class WeatherDetailsActivity extends AppCompatActivity{
             } else if(position==1) {
                 return new Weather5DaysFragment();
             } else if(position==2){
-                return new Weather5DaysHourFragment();
+               return new Weather5DaysHourFragment();
             }
 
             return null;
@@ -112,6 +165,83 @@ public class WeatherDetailsActivity extends AppCompatActivity{
                     return "Hours";
             }
             return null;
+        }
+    }
+
+    private class GetItemCity extends AsyncTask<Void,Void,ItemCity> {
+        String city;
+
+        public GetItemCity(String _city){
+            city = _city.toString();
+        }
+
+
+        @Override
+        protected ItemCity doInBackground(Void... params) {
+            URL url = null;
+            BufferedReader br = null;
+            ItemCity result = null;
+
+
+            try {
+                //encajamos la variable en el parametro de ciudades
+                url = new URL("https://maps.googleapis.com/maps/api/place/autocomplete/json?input="+city+"&types=%28cities%29&key=AIzaSyAKlKgw0xcUOGqWvSo2qOn_zdjXgY8xi3M");
+                br = new BufferedReader(new InputStreamReader(url.openStream()));
+
+                Gson gson = new Gson();
+
+                result = gson.fromJson(br, ItemCity.class);
+
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }finally {
+                if(br!=null){
+                    try {
+                        br.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(ItemCity itemCity) {
+            super.onPostExecute(itemCity);
+            final List<String> listCities = new ArrayList<>();
+
+            if(itemCity != null) {
+                for (int i = 0; i < itemCity.getPredictions().size(); i++) {
+                    //Voy agregando las ciudades del array de predicciones
+                    listCities.add(itemCity.getPredictions().get(i).getDescription());
+                }
+            }
+
+            autoSearchText.setAdapter(new ArrayAdapter<String>(WeatherDetailsActivity.this,android.R.layout.simple_dropdown_item_1line, listCities));
+            autoSearchText.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    //Guardo en la propiedad la variable buscada
+                    city = listCities.get(position).replace(" ","");
+
+                    //Propago el resultado en el bundle que capturan los fragment
+                    /*Fragment fragmentDetail= new WeatherDetailFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("city", city);
+                    fragmentDetail.setArguments(bundle);
+
+                    //Refresco los fragments
+                    WeatherDetailsActivity.this.getSupportFragmentManager().beginTransaction().detach(fragmentDetail).commit();
+                    WeatherDetailsActivity.this.getSupportFragmentManager().beginTransaction().attach(fragmentDetail).commit();
+                    */
+
+                }
+            });
         }
     }
 }

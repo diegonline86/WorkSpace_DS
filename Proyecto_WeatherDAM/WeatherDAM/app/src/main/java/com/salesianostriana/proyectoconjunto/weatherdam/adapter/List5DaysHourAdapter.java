@@ -1,6 +1,7 @@
 package com.salesianostriana.proyectoconjunto.weatherdam.adapter;
 
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 
 import com.salesianostriana.proyectoconjunto.weatherdam.R;
 import com.salesianostriana.proyectoconjunto.weatherdam.model.itemCityWeather5Days.ItemCityWeather5DaysHoursCompact;
+import com.salesianostriana.proyectoconjunto.weatherdam.utils.ImageUtils;
+
 import java.util.List;
 
 /**
@@ -60,10 +63,17 @@ public class List5DaysHourAdapter extends RecyclerView.Adapter<List5DaysHourAdap
     public void onBindViewHolder(ViewHolder holder, int position) {
         ItemCityWeather5DaysHoursCompact itemActual = data.get(position);
 
+        if(position%2==0){
+            v.setBackground(new ColorDrawable(0X592196f3));
+        }else{
+            v.setBackground(new ColorDrawable(0X262196f3));
+        }
+
         holder.textView5DaysHour.setText(itemActual.getHour());
         holder.textView5DaysHum.setText(itemActual.getHumidity());
         holder.textView5DaysWind.setText(itemActual.getWind());
         holder.textView5DaysTemp.setText(itemActual.getTemp());
+        ImageUtils.setViewImage(holder.imgView5DaysCond,25,25,itemActual.getIcon());
     }
 
     @Override

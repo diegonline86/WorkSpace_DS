@@ -15,7 +15,7 @@ public class Prediction {
     @SerializedName("description")
     @Expose
     private String description;
-    @SerializedName("id")
+    @SerializedName("city")
     @Expose
     private String id;
     @SerializedName("matched_substrings")
@@ -82,7 +82,7 @@ public class Prediction {
     /**
      * 
      * @return
-     *     The id
+     *     The city
      */
     public String getId() {
         return id;
@@ -91,7 +91,7 @@ public class Prediction {
     /**
      * 
      * @param id
-     *     The id
+     *     The city
      */
     public void setId(String id) {
         this.id = id;

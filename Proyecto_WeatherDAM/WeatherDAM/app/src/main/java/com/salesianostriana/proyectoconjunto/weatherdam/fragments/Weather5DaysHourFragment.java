@@ -31,7 +31,7 @@ import java.util.Set;
 
 public class Weather5DaysHourFragment extends Fragment {
     RecyclerView recyclerView5DaysHours;
-    String id;
+    String city;
 
     public Weather5DaysHourFragment() {
         // Required empty public constructor
@@ -42,7 +42,7 @@ public class Weather5DaysHourFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         Bundle extra = getActivity().getIntent().getExtras();
-        id = extra.getString("weatherID");
+        city = extra.getString("city");
     }
 
     @Override
@@ -72,7 +72,7 @@ public class Weather5DaysHourFragment extends Fragment {
 
             try {
                 //encajamos la variable en el parametro de ciudades
-                url = new URL("http://api.openweathermap.org/data/2.5/forecast?id="+id+"&units=metric&appid=616440c75d43cf432ff5518ff8b6ee33");
+                url = new URL("http://api.openweathermap.org/data/2.5/forecast?q="+city+"&units=metric&appid=616440c75d43cf432ff5518ff8b6ee33");
                 br = new BufferedReader(new InputStreamReader(url.openStream()));
 
                 Gson gson = new Gson();
@@ -123,17 +123,17 @@ public class Weather5DaysHourFragment extends Fragment {
             String hour = "",
                     icon ="",
                     hum = "",
-                    pres = "",
+                    wind = "",
                     temp = "";
 
                 for(com.salesianostriana.proyectoconjunto.weatherdam.model.itemCityWeather5Days.List l:itemCity5Days.getList()){
                     if(l.getDtTxt().contains(date)){
                         hour = l.getDtTxt();
                         icon = l.getWeather().get(0).getIcon();
-                        hum = String.valueOf(l.getMain().getHumidity());
-                        pres = String.valueOf(l.getMain().getPressure());
+                        hum = String.valueOf(l.getMain().getHumidity())+"%";
+                        wind = String.valueOf(l.getWind().getSpeed())+"Km/H";
                         temp = String.valueOf(l.getMain().getTemp())+"º";
-                        res.add(new ItemCityWeather5DaysHoursCompact(hour.substring(hour.indexOf(' '),hour.length()-1),icon,hum,pres,temp));
+                        res.add(new ItemCityWeather5DaysHoursCompact(hour.substring(hour.indexOf(' '),hour.length()-1),icon,hum,wind,temp));
                     }
 
                 }

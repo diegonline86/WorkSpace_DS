@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class Weather {
 
-    @SerializedName("id")
+    @SerializedName("city")
     @Expose
     private long id;
     @SerializedName("main")
@@ -44,7 +44,7 @@ public class Weather {
     /**
      * 
      * @return
-     *     The id
+     *     The city
      */
     public long getId() {
         return id;
@@ -53,7 +53,7 @@ public class Weather {
     /**
      * 
      * @param id
-     *     The id
+     *     The city
      */
     public void setId(long id) {
         this.id = id;
