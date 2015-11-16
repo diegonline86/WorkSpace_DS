@@ -50,15 +50,4 @@
         android:layout_alignParentStart="true"
         android:layout_marginRight="10dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Hum"
-        android:id="@+id/textViewHum5Days"
-        android:textSize="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_below="@+id/textViewMinTemp5Days"
-        android:layout_alignParentStart="true"
-        android:layout_marginRight="10dp" />
 </LinearLayout>
