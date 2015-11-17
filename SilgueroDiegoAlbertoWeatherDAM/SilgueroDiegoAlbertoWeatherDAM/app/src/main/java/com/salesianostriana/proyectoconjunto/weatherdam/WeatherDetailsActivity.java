@@ -66,10 +66,7 @@ public class WeatherDetailsActivity extends AppCompatActivity{
         final TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
         tabLayout.setBackground(new ColorDrawable(0xff2196f3));
-
-        String ciudad = getIntent().getExtras().getString("city");
-        Toast.makeText(WeatherDetailsActivity.this, ciudad, Toast.LENGTH_SHORT).show();
-
+        
 
     }
 
