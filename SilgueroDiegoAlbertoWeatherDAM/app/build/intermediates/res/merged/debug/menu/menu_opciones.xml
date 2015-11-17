@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:compat="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/action_search"
+        android:title="Buscar"
+        android:icon="@android:drawable/ic_menu_search"
+        compat:showAsAction="ifRoom|collapseActionView"
+        compat:actionViewClass="android.widget.AutoCompleteTextView"/>
+    <item android:id="@+id/action_refresh"
+        android:title="Refresh"
+        android:icon="@drawable/ic_action_refresh"
+        compat:showAsAction="ifRoom"/>
+    <item android:id="@+id/action_configuration"
+        android:title="Configuracion"
+        android:icon="@android:drawable/ic_menu_delete" />
+</menu><!-- From: file:/C:/Users/Diego/AndroidStudioProjects/SilgueroDiegoAlbertoWeatherDAM/app/src/main/res/menu/menu_opciones.xml -->
