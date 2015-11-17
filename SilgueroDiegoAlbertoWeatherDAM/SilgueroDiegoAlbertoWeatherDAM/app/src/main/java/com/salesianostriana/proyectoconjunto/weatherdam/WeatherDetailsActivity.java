@@ -66,7 +66,7 @@ public class WeatherDetailsActivity extends AppCompatActivity{
         final TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
         tabLayout.setBackground(new ColorDrawable(0xff2196f3));
-        
+
 
     }
 
