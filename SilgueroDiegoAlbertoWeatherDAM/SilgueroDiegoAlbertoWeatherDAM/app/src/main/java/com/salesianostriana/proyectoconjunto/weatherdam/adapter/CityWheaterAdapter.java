@@ -97,7 +97,7 @@ public class CityWheaterAdapter extends RecyclerView.Adapter<CityWheaterAdapter.
         holder.textViewCityWeatherLocation.setText(cityWeather.getName());
         holder.textViewCityWeatherTemp.setText(String.valueOf(cityWeather.getMain().getTemp())+"º");
         holder.city = cityWeather.getName();
-        ImageUtils.setViewImage(holder.imgViewCityWeatherState,500,500,weather.getIcon());
+        ImageUtils.setViewImage(holder.imgViewCityWeatherState,weather.getIcon());
 
 
         if(bookmark){

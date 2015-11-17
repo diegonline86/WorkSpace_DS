@@ -105,7 +105,7 @@ public class WeatherDetailFragment extends Fragment{
             textViewWind.setText(String.valueOf(weather.getWind().getSpeed())+"KMH");
             textViewHumidity.setText(String.valueOf(weather.getMain().getHumidity())+"%");
             textViewPressure.setText(String.valueOf(weather.getMain().getPressure())+"MB");
-            ImageUtils.setViewImage(imageViewIconWeather,500,500,itemCityWeather.getWeather().get(0).getIcon());
+            ImageUtils.setViewImage(imageViewIconWeather,itemCityWeather.getWeather().get(0).getIcon());
         }
     }
 }
