@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -137,10 +138,8 @@ public class WeatherMainActivity extends AppCompatActivity {
 
 
             try {
-                //quitamos los espacios para adaptarlo al formato url
-                city.replace(" ", "");
-                //encajamos la variable en el parametro de ciudades
-                url = new URL("http://api.openweathermap.org/data/2.5/weather?q="+city+"&units=metric&appid=616440c75d43cf432ff5518ff8b6ee33");
+                //encajamos la variable en el parametro de ciudades y formateamos el parametro city para adaptarlo al formato URL
+                url = new URL("http://api.openweathermap.org/data/2.5/weather?q="+URLEncoder.encode(city,"UTF-8")+"&units=metric&appid=616440c75d43cf432ff5518ff8b6ee33");
                 br = new BufferedReader(new InputStreamReader(url.openStream()));
 
                 Gson gson = new Gson();
@@ -187,8 +186,8 @@ public class WeatherMainActivity extends AppCompatActivity {
 
 
             try {
-                //encajamos la variable en el parametro de ciudades
-                url = new URL("https://maps.googleapis.com/maps/api/place/autocomplete/json?input="+city+"&types=%28cities%29&key=AIzaSyAKlKgw0xcUOGqWvSo2qOn_zdjXgY8xi3M");
+                //encajamos la variable en el parametro de ciudades y formateamos el parametro city para adaptarlo al formato URL
+                url = new URL("https://maps.googleapis.com/maps/api/place/autocomplete/json?input="+URLEncoder.encode(city,"UTF-8")+"&types=%28cities%29&key=AIzaSyAKlKgw0xcUOGqWvSo2qOn_zdjXgY8xi3M");
                 br = new BufferedReader(new InputStreamReader(url.openStream()));
 
                 Gson gson = new Gson();
@@ -230,7 +229,7 @@ public class WeatherMainActivity extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     //Ejecuto la busqueda de la ciudad seleccionada
-                    new GetItemCityWeather(listCities.get(position).replace(" ",""),false).execute();
+                    new GetItemCityWeather(listCities.get(position),false).execute();
                 }
             });
         }

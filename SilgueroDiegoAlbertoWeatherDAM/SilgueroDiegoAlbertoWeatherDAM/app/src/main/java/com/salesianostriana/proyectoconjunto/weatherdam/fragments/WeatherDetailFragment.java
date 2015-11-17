@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 
 
 public class WeatherDetailFragment extends Fragment{
@@ -75,8 +76,8 @@ public class WeatherDetailFragment extends Fragment{
 
 
             try {
-                //encajamos la variable en el parametro de ciudades
-                url = new URL("http://api.openweathermap.org/data/2.5/weather?q="+city+"&units=metric&appid=616440c75d43cf432ff5518ff8b6ee33");
+                //encajamos la variable en el parametro de ciudades y adaptamos la variable city al formato URL
+                url = new URL("http://api.openweathermap.org/data/2.5/weather?q="+URLEncoder.encode(city,"UTF-8")+"&units=metric&appid=616440c75d43cf432ff5518ff8b6ee33");
                 br = new BufferedReader(new InputStreamReader(url.openStream()));
 
                 Gson gson = new Gson();

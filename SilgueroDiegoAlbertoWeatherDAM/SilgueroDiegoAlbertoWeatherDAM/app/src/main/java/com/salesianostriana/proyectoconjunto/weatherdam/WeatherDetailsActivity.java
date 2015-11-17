@@ -67,6 +67,9 @@ public class WeatherDetailsActivity extends AppCompatActivity{
         tabLayout.setupWithViewPager(mViewPager);
         tabLayout.setBackground(new ColorDrawable(0xff2196f3));
 
+        String ciudad = getIntent().getExtras().getString("city");
+        Toast.makeText(WeatherDetailsActivity.this, ciudad, Toast.LENGTH_SHORT).show();
+
 
     }
 
@@ -115,7 +118,7 @@ public class WeatherDetailsActivity extends AppCompatActivity{
             return true;
         }else if(id == R.id.action_refresh){
             //lo que hacemos para refrescar es recrear el activity
-            this.recreate();
+            WeatherDetailsActivity.this.recreate();
             return true;
         }
 
@@ -227,19 +230,12 @@ public class WeatherDetailsActivity extends AppCompatActivity{
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     //Guardo en la propiedad la variable buscada
-                    city = listCities.get(position).replace(" ","");
-
-                    //Propago el resultado en el bundle que capturan los fragment
-                    /*Fragment fragmentDetail= new WeatherDetailFragment();
-                    Bundle bundle = new Bundle();
-                    bundle.putString("city", city);
-                    fragmentDetail.setArguments(bundle);
-
-                    //Refresco los fragments
-                    WeatherDetailsActivity.this.getSupportFragmentManager().beginTransaction().detach(fragmentDetail).commit();
-                    WeatherDetailsActivity.this.getSupportFragmentManager().beginTransaction().attach(fragmentDetail).commit();
-                    */
-
+                    city = listCities.get(position);
+                    //Actualizo el extra que se propaga en los fragments
+                    getIntent().removeExtra("city");
+                    getIntent().putExtra("city",city);
+                    //refresco el activity
+                    WeatherDetailsActivity.this.recreate();
                 }
             });
         }
