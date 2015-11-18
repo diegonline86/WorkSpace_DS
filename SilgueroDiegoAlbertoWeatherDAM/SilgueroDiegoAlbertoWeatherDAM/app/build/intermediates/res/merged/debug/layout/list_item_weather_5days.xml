@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextDay5Days"
+        android:text="Day"
+        android:textSize="25dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginRight="10dp" />
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/imageView5Days"
+        android:src="@drawable/ic_weather_default"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/editTextDay5Days"
+        android:layout_alignParentStart="true"
+        android:layout_marginRight="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextMaxTemp5Days"
+        android:text="Max"
+        android:textSize="25dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/imageView5Days"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Min"
+        android:id="@+id/textViewMinTemp5Days"
+        android:textSize="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/editTextMaxTemp5Days"
+        android:layout_alignParentStart="true"
+        android:layout_marginRight="10dp" />
+
+</LinearLayout><!-- From: file:/C:/Users/das/Desktop/WorkSpace_DS/SilgueroDiegoAlbertoWeatherDAM/SilgueroDiegoAlbertoWeatherDAM/app/src/main/res/layout/list_item_weather_5days.xml -->
